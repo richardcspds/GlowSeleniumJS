@@ -1,23 +1,23 @@
-'use strict'
-var webdriver = require('selenium-webdriver');
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var glowPage = require('../pages/PageFactory')
+// var webdriver = require('selenium-webdriver');
+// var test = require('selenium-webdriver/testing');
+// var glowPage = require('../pages/PageFactory')
 //var sleep = require('sleep');
 
-describe('Smoke Testing', function(){
+// import assert from "assert";
+// var businessPage = require("../pages/BusinessPage");
+import businessPage from "../pages/BusinessPage";
 
-    it('Set business name', function(){
-        browser.url('http://apply.staging.glow.co')
-        assert.ok(glowPage.businessPage.atBusinessNameScreen())
-        driver.findElement({xpath: "//*[@placeholder ='Business Name']"}).sendKeys('Domo');
-        driver.findElement({id: "CTA"}).click();
-        driver.findElement({xpath: "//*[@placeholder = 'Business Address']"}).isDisplayed().then(function(elementDisplayed){
-            assert.equal(elementDisplayed, true, 'Address input not shown');
+describe("Smoke Testing", function() {
+    console.log(businessPage.NAME_INPUT);
+
+    it("Set business name", function() {
+        browser.url("http://apply.staging.glow.co");
+        browser.waitUntil(() => {
+            console.log();
+            return businessPage.NAME_INPUT.waitForExist();
         });
-        glowPage.businessPage.visit('http://apply.staging.glow.co')       
+        businessPage.NAME_INPUT.setValue("Domo");
+        businessPage.PRIMARY_BUTTON.keys("\uE007");
+        browser.pause(5000);
     });
 });
-
-
-

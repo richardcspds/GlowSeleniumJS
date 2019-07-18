@@ -1,35 +1,30 @@
-export class BasePage{
-
-    constructor(driver) {
-        var browser = driver
-        var dateTime = new Date()
+export default class BasePage {
+    constructor() {
+        var browser = driver;
+        var dateTime = new Date();
     }
 
     visit(urlPath = "") {
-        browser.navigateTo(urlPath)
+        browser.navigateTo(urlPath);
     }
 
-    find(locator){
-        element = browser.findElement(locator)
-        scrollIntoView(element)
+    find(locator) {
+        element = browser.findElement(locator);
+        scrollIntoView(element);
     }
 
-    type(locator, text){
+    type(locator, text) {}
 
-    }
-
-    click(locator){
-        var element = find(locator)
-        scrollIntoView(element)
+    click(locator) {
+        var element = find(locator);
+        scrollIntoView(element);
         try {
-            element.click()            
-        } catch (error) {
-            
-        }
+            element.click();
+        } catch (error) {}
     }
-    
-    isDisplayed(locator){
-        element = find(locator)
-        browser.isElementDisplayed(element)
+
+    isDisplayed(locator) {
+        element = find(locator);
+        browser.isElementDisplayed(element);
     }
 }
