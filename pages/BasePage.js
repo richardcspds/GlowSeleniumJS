@@ -13,7 +13,10 @@ export default class BasePage {
         scrollIntoView(element);
     }
 
-    type(locator, text) {}
+    type(locator, text) {
+        element = find(locator)
+        element.setValue(text)
+    }
 
     click(locator) {
         var element = find(locator);
@@ -25,6 +28,6 @@ export default class BasePage {
 
     isDisplayed(locator) {
         element = find(locator);
-        browser.isElementDisplayed(element);
+        return browser.isElementDisplayed(element);
     }
 }

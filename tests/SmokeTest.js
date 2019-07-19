@@ -14,9 +14,9 @@ describe("Smoke Testing", function() {
         browser.url("http://apply.staging.glow.co");
         browser.waitUntil(() => {
             console.log();
-            return businessPage.NAME_INPUT.waitForExist();
+            return businessPage.atBusinessNameScreen();
         });
-        businessPage.NAME_INPUT.setValue("Domo");
+        businessPage.setBusinessName("Domo");
         businessPage.PRIMARY_BUTTON.keys("\uE007");
         browser.pause(5000);
     });
