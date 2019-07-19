@@ -5,7 +5,7 @@ export default class BasePage {
     }
 
     visit(urlPath = "") {
-        browser.navigateTo(urlPath);
+        browser.url(urlPath);
     }
 
     find(locator) {
@@ -13,21 +13,17 @@ export default class BasePage {
         scrollIntoView(element);
     }
 
-    type(locator, text) {
-        element = find(locator)
-        element.setValue(text)
-    }
+    type(locator, text) {}
 
-    click(locator) {
-        var element = find(locator);
-        scrollIntoView(element);
-        try {
-            element.click();
-        } catch (error) {}
+    click(locator) {        
+        this.isDisplayed(locator);        
+        locator.click();
     }
 
     isDisplayed(locator) {
-        element = find(locator);
-        return browser.isElementDisplayed(element);
+        browser.waitUntil(() => {
+            return locator.waitForExist();
+        });
+        locator.scrollIntoView();
     }
 }

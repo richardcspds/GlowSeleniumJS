@@ -52,11 +52,12 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 5,
         //
-        browserName: "chrome"
-            // If outputDir is provided WebdriverIO can capture driver session logs
-            // it is possible to configure which logTypes to include/exclude.
-            // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-            // excludeDriverLogs: ['bugreport', 'server'],
+        browserName: "chrome",
+        "goog:chromeOptions": {
+            // to run chrome headless the following flags are required
+            // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+            //args: ["--headless", "--disable-gpu"]
+        }
     }],
     //
     // ===================
@@ -92,7 +93,7 @@ exports.config = {
     baseUrl: "https://apply.staging.glow.co",
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 50000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -121,7 +122,16 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ["spec"],
+    reporters: [
+        [
+            "allure",
+            {
+                outputDir: "allure-results",
+                disableWebdriverStepsReporting: false,
+                disableWebdriverScreenshotsReporting: false
+            }
+        ]
+    ],
 
     //
     // Options to be passed to Mocha.
@@ -162,50 +172,53 @@ exports.config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
     before: function(capabilities, specs) {
-            require("@babel/register");
-            var chai = require("chai");
-            var chaiWebdriver = require("chai-webdriverio").default;
-            chai.use(chaiWebdriver(browser));
-            global.expect = chai.expect();
-            chai.Should();
+        require("@babel/register");
+        var chai = require("chai");
+        var chaiWebdriver = require("chai-webdriverio").default;
+        chai.use(chaiWebdriver(browser));
+        global.expect = chai.expect();
+        chai.Should();
+    },
+    /**
+     * Runs before a WebdriverIO command gets executed.
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     */
+    // beforeCommand: function (commandName, args) {
+    // },
+    /**
+     * Hook that gets executed before the suite starts
+     * @param {Object} suite suite details
+     */
+    // beforeSuite: function (suite) {
+    // },
+    /**
+     * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
+     * @param {Object} test test details
+     */
+    // beforeTest: function (test) {
+    // },
+    /**
+     * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
+     * beforeEach in Mocha)
+     */
+    // beforeHook: function () {
+    // },
+    /**
+     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
+     * afterEach in Mocha)
+     */
+    // afterHook: function () {
+    // },
+    /**
+     * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
+     * @param {Object} test test details
+     */
+    afterTest: function(test) {
+            if (test.error !== undefined) {
+                browser.takeScreenshot();
+            }
         }
-        /**
-         * Runs before a WebdriverIO command gets executed.
-         * @param {String} commandName hook command name
-         * @param {Array} args arguments that command would receive
-         */
-        // beforeCommand: function (commandName, args) {
-        // },
-        /**
-         * Hook that gets executed before the suite starts
-         * @param {Object} suite suite details
-         */
-        // beforeSuite: function (suite) {
-        // },
-        /**
-         * Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-         * @param {Object} test test details
-         */
-        // beforeTest: function (test) {
-        // },
-        /**
-         * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-         * beforeEach in Mocha)
-         */
-        // beforeHook: function () {
-        // },
-        /**
-         * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-         * afterEach in Mocha)
-         */
-        // afterHook: function () {
-        // },
-        /**
-         * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-         * @param {Object} test test details
-         */
-        // afterTest: function (test) {
-        // },
         /**
          * Hook that gets executed after the suite has ended
          * @param {Object} suite suite details
