@@ -1,0 +1,1 @@
+import AllureReporter from "@wdio/allure-reporter";

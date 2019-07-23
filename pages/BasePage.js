@@ -15,8 +15,8 @@ export default class BasePage {
 
     type(locator, text) {}
 
-    click(locator) {        
-        this.isDisplayed(locator);        
+    click(locator) {
+        this.isDisplayed(locator);
         locator.click();
     }
 
@@ -25,5 +25,6 @@ export default class BasePage {
             return locator.waitForExist();
         });
         locator.scrollIntoView();
+        return true;
     }
 }

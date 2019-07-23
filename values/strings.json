@@ -4,6 +4,9 @@
     "user_name": "Steve",
     "user_lastname": "Jobs",
     "user_email": "steve@glow.co",
-    "user_phone": "3698521478"
+    "user_phone": "3698521478",
+    "company_category": "Art, Craft and Party Supplies",
+    "company_industry": "Stores",
+    "company_subcategory": "Art Store"
 
 }

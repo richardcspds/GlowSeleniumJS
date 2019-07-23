@@ -215,9 +215,9 @@ exports.config = {
      * @param {Object} test test details
      */
     afterTest: function(test) {
-            if (test.error !== undefined) {
-                browser.takeScreenshot();
-            }
+            //if (test.error !== undefined) {
+            browser.takeScreenshot();
+            //}
         }
         /**
          * Hook that gets executed after the suite has ended
@@ -233,6 +233,7 @@ exports.config = {
          * @param {Object} error error object if any
          */
         // afterCommand: function (commandName, args, result, error) {
+        //     browser.takeScreenshot()
         // },
         /**
          * Gets executed after all tests are done. You still have access to all global variables from
