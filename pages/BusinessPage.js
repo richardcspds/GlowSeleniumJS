@@ -12,6 +12,10 @@ class BusinessPage extends BasePage {
         //inputs
         this.bpNameInput = "//*[@placeholder ='Business Name']";
         this.bpAddressInput = "//*[@placeholder ='Business Address']";
+        this.bpFirstNameInput = "#firstName"
+        this.bpLastNameInput = "#lastName"
+        this.bpWorkEmailInput = "#workEmail"
+        this.bpPhoneNumberInput = "#phone"
         //labels
         this.bpBusinessNameLabel = "//h1/span[contains(text(), 'the name')]";
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
@@ -21,14 +25,19 @@ class BusinessPage extends BasePage {
         //buttons
         this.bpPrimaryButton = "#CTA";
         this.bpNextButton = "//button/span[contains(text(), 'Next')]";
+        this.bpYesButton = "//button/span[contains(text(), 'Yes')]";
+        this.bpNoButton = "//button/span[contains(text(), 'No')]";
+        this.bpSubmitButton = "//button[@type = 'submit']";
+        //checkboxes
+        this.bpTermsOfServicesCheckbox = "#toc";
         //sections
         this.bpIndustryLabel = "//div[text() = '{0}']";
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         this.url = "https://apply.staging.glow.co";
         //sliders
-        this.slider = "//div[@role = 'slider']"
-        this.sliderRail = "//div[@class = 'rc-slider']"
+        this.bpSlider = "//div[@role = 'slider']"
+        this.bpSliderRail = "//div[@class = 'rc-slider']"
         // PAYROLL_SLIDER = {xpath: "(//div[@role = 'slider'])[N]"}
         // PAYROLL_SLIDER_RAIL = {xpath: "(//div[@class = 'rc-slider'])[N]"}
 
@@ -45,7 +54,7 @@ class BusinessPage extends BasePage {
     /**
      * GETTERS
      **/
-
+    //inputs
     @element(browser)
     getNameInput() {
         return this.bpNameInput;
@@ -60,15 +69,44 @@ class BusinessPage extends BasePage {
         return $(this.bpBusinessNameLabel);
     }
     @element(browser)
+    getFirstNameInput(){
+        return this.bpFirstNameInput;
+    }
+    @element(browser)
+    getLastNameInput(){
+        return this.bpLastNameInput;
+    }
+    @element(browser)
+    getWorkEmailInput(){
+        return this.bpWorkEmailInput;
+    }
+    @element(browser)
+    getPhoneNumberInput(){
+        return this.bpPhoneNumberInput;
+    }
+    //labels
+    @element(browser)
     getAddressConfirmationLabel() {
             return this.bpAddressConfirmationLabel;
         }
-        //butons
+    //butons
     get primaryButton() {
         return $(this.bpPrimaryButton);
     }
     get nextButton() {
         return $(this.bpNextButton);
+    }
+    get noButton(){
+        return $(this.bpNoButton);
+    }
+    get yesButton(){
+        return $(this.bpYesButton);
+    }
+    get submitButton(){
+        return $(this.bpSubmitButton);
+    }
+    get termsOfServicesCheckbox(){
+        return $(this.bpTermsOfServicesCheckbox);
     }
     get getNameDropDown() {
         return $(this.bpNameDropDown);
@@ -134,8 +172,8 @@ class BusinessPage extends BasePage {
      * Methods for sliders
      */
     setSliderValue(value){
-        var sld = $(this.slider);
-        var sldRail = $(this.sliderRail);
+        var sld = $(this.bpSlider);
+        var sldRail = $(this.bpSliderRail);
         var minValue = parseFloat(sld.getAttribute("aria-valuemin"));
         var maxValue = parseFloat(sld.getAttribute("aria-valuemax"));
         var valueNow = parseFloat(sld.getAttribute("aria-valuenow"));
