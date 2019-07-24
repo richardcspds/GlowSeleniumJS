@@ -35,6 +35,11 @@ describe("Smoke Testing", function() {
     it("Policy Start Date", () => {
         businessPage.setPolicyDateWeeks(2)
         businessPage.nextButton.click()
-            // browser.pause(5000);
+        
+    })
+    it("Answer form questions", () =>{
+        businessPage.setSliderValue(20);
+        browser.pause(5000);
+
     })
 })

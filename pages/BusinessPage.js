@@ -26,6 +26,11 @@ class BusinessPage extends BasePage {
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         this.url = "https://apply.staging.glow.co";
+        //sliders
+        this.slider = "//div[@role = 'slider']"
+        this.sliderRail = "//div[@class = 'rc-slider']"
+        // PAYROLL_SLIDER = {xpath: "(//div[@role = 'slider'])[N]"}
+        // PAYROLL_SLIDER_RAIL = {xpath: "(//div[@class = 'rc-slider'])[N]"}
 
         // Calendar
         this.dateCaption = "//div[contains(@class, 'DayPicker-Caption')]/div";
@@ -96,6 +101,8 @@ class BusinessPage extends BasePage {
         this.isDisplayed($(subCategory));
         return $(subCategory);
     }
+      
+
     visit() {
         super.visit(this.url);
     }
@@ -111,11 +118,41 @@ class BusinessPage extends BasePage {
         }
         $(nDate).click();
     }
+    setPolicyDateDays(days){
+        var currentDate = new Date();
+        var newDate = new Date();
+        newDate.setDate(currentDate.getDate() + days);
+        this.setDate(dateFormat(newDate, "ddd mmm dd yyyy"));
+    }
     setPolicyDateWeeks(weeks) {
         var currentDate = new Date();
         var future = new Date();
         future.setDate(currentDate.getDate() + weeks * 7);
         this.setDate(dateFormat(future, "ddd mmm dd yyyy"));
+    }
+    /*
+     * Methods for sliders
+     */
+    setSliderValue(value){
+        var sld = $(this.slider);
+        var sldRail = $(this.sliderRail);
+        var minValue = parseFloat(sld.getAttribute("aria-valuemin"));
+        var maxValue = parseFloat(sld.getAttribute("aria-valuemax"));
+        var valueNow = parseFloat(sld.getAttribute("aria-valuenow"));
+        if (value > maxValue){
+            value = maxValue
+        }
+        var target = this.getPixelsToMove(sldRail, value, maxValue, minValue, valueNow);
+        sld.moveTo();
+        browser.buttonDown();
+        sld.moveTo(target, 0);
+        browser.buttonUp();
+    }  
+    getPixelsToMove(sliderRail, value, maxValue, minValue, valueNow){
+        var width = sliderRail.offsetWidth;
+        var currentPixel = (width / (maxValue - minValue)) * (valueNow - minValue);
+        var tempPixels = ((width / (maxValue - minValue)) * (value - minValue)) - currentPixel;
+        return tempPixels
     }
 
     @element(browser)
