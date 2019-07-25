@@ -174,22 +174,31 @@ class BusinessPage extends BasePage {
     setSliderValue(value){
         var sld = $(this.bpSlider);
         var sldRail = $(this.bpSliderRail);
-        var minValue = parseFloat(sld.getAttribute("aria-valuemin"));
-        var maxValue = parseFloat(sld.getAttribute("aria-valuemax"));
-        var valueNow = parseFloat(sld.getAttribute("aria-valuenow"));
+        
+        var target = parseInt(this.getPixelsToMove(sld, sldRail, value));
+        console.log("Pixels to move = " + target);
+        $(this.bpSlider).moveTo();
+        browser.buttonDown;
+        $(this.bpSlider).moveTo(target,0);
+        browser.buttonUp;
+    }  
+    getPixelsToMove(slider, sliderRail, value){
+        var minValue = parseFloat(slider.getAttribute("aria-valuemin"));
+        var maxValue = parseFloat(slider.getAttribute("aria-valuemax"));
+        var valueNow = parseFloat(slider.getAttribute("aria-valuenow"));
+        var width = parseFloat(sliderRail.getAttribute("offsetWidth"));
         if (value > maxValue){
             value = maxValue
         }
-        var target = this.getPixelsToMove(sldRail, value, maxValue, minValue, valueNow);
-        sld.moveTo();
-        browser.buttonDown();
-        sld.moveTo(target, 0);
-        browser.buttonUp();
-    }  
-    getPixelsToMove(sliderRail, value, maxValue, minValue, valueNow){
-        var width = sliderRail.offsetWidth;
+        console.log("value =>>>>>>>>>> " + value)
+        console.log("maxValue =>>>>>>>>>> " + maxValue)
+        console.log("minValue =>>>>>>>>>> " + minValue)
+        console.log("valueNow =>>>>>>>>>> " + valueNow)
+        console.log("width =>>>>>>>>>> " + width)
         var currentPixel = (width / (maxValue - minValue)) * (valueNow - minValue);
+        console.log("currentPixel =>>>>>>>>>> " + currentPixel)
         var tempPixels = ((width / (maxValue - minValue)) * (value - minValue)) - currentPixel;
+        console.log("Pixels =>>>>>>>>>> " + tempPixels)
         return tempPixels
     }
 

@@ -39,7 +39,7 @@ describe("Smoke Testing", function() {
         
     })
     it("Answer form questions", () =>{
-        // businessPage.setSliderValue(20);
+        businessPage.setSliderValue(200);
         businessPage.nextButton.click();
         browser.pause(5000);
         businessPage.nextButton.click();
@@ -56,8 +56,7 @@ describe("Smoke Testing", function() {
         browser.pause(5000);
         businessPage.nextButton.click();
         browser.pause(5000);
-    })
-    it("Fill Sign-up form", () =>{
+
         businessPage.getFirstNameInput().setValue(stringValues.user_name);
         businessPage.getLastNameInput().setValue(stringValues.user_lastname);
         businessPage.getWorkEmailInput().setValue(stringValues.user_email);
@@ -65,9 +64,5 @@ describe("Smoke Testing", function() {
         businessPage.termsOfServicesCheckbox.click();
         businessPage.submitButton.click();
         browser.pause(5000);
-    })
-    it("Set payrolls amounts", () =>{
-
-        
-    })
+    })    
 })
