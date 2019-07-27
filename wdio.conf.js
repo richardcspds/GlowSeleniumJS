@@ -56,7 +56,7 @@ exports.config = {
         "goog:chromeOptions": {
             // to run chrome headless the following flags are required
             // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-            //args: ["--headless", "--disable-gpu"]
+            // args: ["--headless", "--disable-gpu"]
         }
     }],
     //
@@ -66,7 +66,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: "trace",
+    logLevel: "error",
     //
     // Set specific log levels per logger
     // loggers:
@@ -138,7 +138,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: "bdd",
-        timeout: 60000,
+        timeout: 70000,
         require: ["@babel/register"]
     },
     //

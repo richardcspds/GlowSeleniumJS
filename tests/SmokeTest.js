@@ -1,9 +1,12 @@
 /* eslint-disable no-undef */
 import businessPage from "../pages/BusinessPage"
+import calendarFragment from "../pages/fragments/calendarFragment"
+import sliderFragment from "../pages/fragments/sliderFragments"
 var stringValues = require("../values/strings.json")
 import allureReporter from "@wdio/allure-reporter"
 
 describe("Smoke Testing", function() {
+
     it("Business Name and Address", () => {
         allureReporter.addArgument("URL", businessPage.getURL)
         allureReporter.addStep("Go to glow page", [businessPage.visit()])
@@ -33,30 +36,39 @@ describe("Smoke Testing", function() {
         businessPage.nextButton.click()
     })
     it("Policy Start Date", () => {
-        businessPage.setPolicyDateWeeks(2)
+        browser.pause(2500);
+        calendarFragment.setPolicyDateWeeks(2)
         businessPage.nextButton.click()
         browser.pause(5000);
-        
+
     })
-    it("Answer form questions", () =>{
-        businessPage.setSliderValue(200);
+    it("Answer form questions", () => {
+
+        // sliderFragment.moveIt(20);
+        businessPage.setSliderValue(20); //number of employees
+        businessPage.nextButton.click();
+        browser.pause(5000);        
+        // sliderFragment.moveIt(2010);
+        businessPage.setSliderValue(2010); //year founded
+        businessPage.nextButton.click();        
+        browser.pause(5000);      
+        businessPage.setSliderValue(1);  //weight limiy
         businessPage.nextButton.click();
         browser.pause(5000);
+        businessPage.noButton.click(); // delivery
+        browser.pause(5000);
+        businessPage.setSliderValue("6:00 pm"); //closing time
         businessPage.nextButton.click();
         browser.pause(5000);
-        businessPage.nextButton.click();
-        browser.pause(5000);
-        businessPage.noButton.click();
-        browser.pause(5000);
-        businessPage.nextButton.click();
-        browser.pause(5000);
+        businessPage.setSliderValue(7000); //place space
         businessPage.nextButton.click();
         browser.pause(15000);
-        businessPage.noButton.click();
+        businessPage.noButton.click(); //xMod
         browser.pause(5000);
-        businessPage.nextButton.click();
+        businessPage.nextButton.click(); // claims no.
         browser.pause(5000);
-
+    })
+    it("Fill Sign-up form", () => {
         businessPage.getFirstNameInput().setValue(stringValues.user_name);
         businessPage.getLastNameInput().setValue(stringValues.user_lastname);
         businessPage.getWorkEmailInput().setValue(stringValues.user_email);
@@ -64,5 +76,9 @@ describe("Smoke Testing", function() {
         businessPage.termsOfServicesCheckbox.click();
         businessPage.submitButton.click();
         browser.pause(5000);
-    })    
+    })
+    it("Set payrolls amounts", () => {
+
+
+    })
 })

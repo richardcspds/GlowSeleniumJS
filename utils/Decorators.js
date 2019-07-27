@@ -11,6 +11,7 @@ export function element(browser) {
             $(_locator).scrollIntoView();
             return $(_locator);
         };
+        browser.takeScreenshot();
         return descriptor;
     };
 }

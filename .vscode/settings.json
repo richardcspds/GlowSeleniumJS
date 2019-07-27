@@ -1,0 +1,5 @@
+{
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true
+}

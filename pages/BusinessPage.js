@@ -1,6 +1,8 @@
 import BasePage from "./BasePage";
 import dateFormat from "dateformat";
 import { element, readonly } from "../utils/Decorators";
+import calendarFragment from "../pages/fragments/calendarFragment"
+import sliderFragment from "../pages/fragments/sliderFragments"
 
 class BusinessPage extends BasePage {
     constructor() {
@@ -8,7 +10,6 @@ class BusinessPage extends BasePage {
         /**
          * ELEMENTS
          **/
-
         //inputs
         this.bpNameInput = "//*[@placeholder ='Business Name']";
         this.bpAddressInput = "//*[@placeholder ='Business Address']";
@@ -35,20 +36,6 @@ class BusinessPage extends BasePage {
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         this.url = "https://apply.staging.glow.co";
-        //sliders
-        this.bpSlider = "//div[@role = 'slider']"
-        this.bpSliderRail = "//div[@class = 'rc-slider']"
-        // PAYROLL_SLIDER = {xpath: "(//div[@role = 'slider'])[N]"}
-        // PAYROLL_SLIDER_RAIL = {xpath: "(//div[@class = 'rc-slider'])[N]"}
-
-        // Calendar
-        this.dateCaption = "//div[contains(@class, 'DayPicker-Caption')]/div";
-        this.dateNextMonth = "//i[contains(@aria-label, 'Next')]";
-        this.dateDay =
-            '//div[contains(@class,"DayPicker-Day") ' +
-            ' and contains(@aria-label,"{0}")]';
-
-        // this.test = "test";
     }
 
     /**
@@ -62,9 +49,9 @@ class BusinessPage extends BasePage {
 
     @element(browser)
     getAddressInput() {
-            return this.bpAddressInput;
-        }
-        //labels
+        return this.bpAddressInput;
+    }
+    //labels
     get getBusinessLabel() {
         return $(this.bpBusinessNameLabel);
     }
@@ -138,73 +125,39 @@ class BusinessPage extends BasePage {
         var subCategory = this.bpSubCategoryLabel.replace("{0}", type);
         this.isDisplayed($(subCategory));
         return $(subCategory);
+    }     
+    /**
+     * Slider methods
+     **/ 
+    setSliderValue(value, index = 1){
+        if (typeof value == "number"){
+            sliderFragment.moveIt(value, index)
+        }
+        else if (typeof value == "string"){
+            if (value.includes(":")){
+                var target = this.getClosingTimeTarget(value)
+                sliderFragment.moveIt(target, index)
+            }
+            else if (value.includes(["K","M"])){
+                // var target = getPayrollTarget(value)
+                sliderFragment.moveIt(target, index)
+            }
+        }
     }
-      
+
+    getClosingTimeTarget(value){
+        var closeTimeValue = {"6:00 am": 0, "6:30 am": 1, "7:00 am": 2, "7:30 am": 3, "8:00 am": 4, "8:30 am": 5, "9:00 am": 6, "9:30 am": 7,
+         "10:00 am": 8, "10:30 am": 9, "11:00 am": 10, "11:30 am": 11, "12:00 pm": 12, "12:30 pm": 13, "1:00 pm": 14, "1:30 pm": 15,
+         "2:00 pm": 16, "2:30 pm": 17, "3:00 pm": 18, "3:30 pm": 19, "4:00 pm": 20, "4:30 pm": 21, "5:00 pm": 22, "5:30 pm": 23,
+         "6:00 pm": 24, "6:30 pm": 25, "7:00 pm": 26, "7:30 pm": 27, "8:30 pm": 28, "9:30 pm": 29, "10:00 pm": 30, "10:30 pm": 31,
+         "11:00 pm": 32, "11:30 pm": 33, "12:00 am": 34, "12:30 am": 35, "1:00 am": 36, "1:30 am": 37, "2:00 am": 38, "2:30 am": 39,
+         "3:00 am": 40, "3:30 am": 41, "4:00 am": 42, "4:30 am": 43, "5:00 am": 44, "5:30 am": 45, "24 hours": 46 }
+         return closeTimeValue[value]            
+    }
 
     visit() {
         super.visit(this.url);
     }
 
-    /*
-     * Methods for the calendar
-     */
-
-    setDate(date) {
-        var nDate = this.dateDay.replace("{0}", date);
-        while (!$(nDate).isDisplayed()) {
-            $(this.dateNextMonth).click();
-        }
-        $(nDate).click();
-    }
-    setPolicyDateDays(days){
-        var currentDate = new Date();
-        var newDate = new Date();
-        newDate.setDate(currentDate.getDate() + days);
-        this.setDate(dateFormat(newDate, "ddd mmm dd yyyy"));
-    }
-    setPolicyDateWeeks(weeks) {
-        var currentDate = new Date();
-        var future = new Date();
-        future.setDate(currentDate.getDate() + weeks * 7);
-        this.setDate(dateFormat(future, "ddd mmm dd yyyy"));
-    }
-    /*
-     * Methods for sliders
-     */
-    setSliderValue(value){
-        var sld = $(this.bpSlider);
-        var sldRail = $(this.bpSliderRail);
-        
-        var target = parseInt(this.getPixelsToMove(sld, sldRail, value));
-        console.log("Pixels to move = " + target);
-        $(this.bpSlider).moveTo();
-        browser.buttonDown;
-        $(this.bpSlider).moveTo(target,0);
-        browser.buttonUp;
-    }  
-    getPixelsToMove(slider, sliderRail, value){
-        var minValue = parseFloat(slider.getAttribute("aria-valuemin"));
-        var maxValue = parseFloat(slider.getAttribute("aria-valuemax"));
-        var valueNow = parseFloat(slider.getAttribute("aria-valuenow"));
-        var width = parseFloat(sliderRail.getAttribute("offsetWidth"));
-        if (value > maxValue){
-            value = maxValue
-        }
-        console.log("value =>>>>>>>>>> " + value)
-        console.log("maxValue =>>>>>>>>>> " + maxValue)
-        console.log("minValue =>>>>>>>>>> " + minValue)
-        console.log("valueNow =>>>>>>>>>> " + valueNow)
-        console.log("width =>>>>>>>>>> " + width)
-        var currentPixel = (width / (maxValue - minValue)) * (valueNow - minValue);
-        console.log("currentPixel =>>>>>>>>>> " + currentPixel)
-        var tempPixels = ((width / (maxValue - minValue)) * (value - minValue)) - currentPixel;
-        console.log("Pixels =>>>>>>>>>> " + tempPixels)
-        return tempPixels
-    }
-
-    @element(browser)
-    test() {
-        return this.bpNameInput;
-    }
 }
 export default new BusinessPage();
