@@ -20,6 +20,7 @@ class BusinessPage extends BasePage {
         //labels
         this.bpBusinessNameLabel = "//h1/span[contains(text(), 'the name')]";
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
+        this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
         //dropdowns
         this.bpNameDropDown = '//*[@id="Main"]/div/div[2]/div/div';
         this.bpAddressDropDown = "//div[contains(@class, 'dropdown-item')]";

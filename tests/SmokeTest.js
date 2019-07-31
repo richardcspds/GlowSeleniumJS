@@ -45,6 +45,7 @@ describe("Smoke Testing", function() {
     it("Answer form questions", () => {
 
         // sliderFragment.moveIt(20);
+        businessPage.isDisplayed($(businessPage.bpEmployeesQuestionLabel));
         businessPage.setSliderValue(20); //number of employees
         businessPage.nextButton.click();
         browser.pause(5000);        
