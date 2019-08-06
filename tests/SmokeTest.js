@@ -4,6 +4,7 @@ import calendarFragment from "../pages/fragments/calendarFragment"
 import sliderFragment from "../pages/fragments/sliderFragments"
 var stringValues = require("../values/strings.json")
 import allureReporter from "@wdio/allure-reporter"
+import { brotliCompressSync } from "zlib";
 
 describe("Smoke Testing", function() {
 
@@ -39,35 +40,37 @@ describe("Smoke Testing", function() {
         browser.pause(2500);
         calendarFragment.setPolicyDateWeeks(2)
         businessPage.nextButton.click()
-        browser.pause(5000);
+        browser.pause(1500);
 
     })
     it("Answer form questions", () => {
 
         // sliderFragment.moveIt(20);
-        businessPage.isDisplayed($(businessPage.bpEmployeesQuestionLabel));
-        businessPage.setSliderValue(20); //number of employees
+        businessPage.getEmployeesQuestionLabel();
+        browser.pause(2500);
+        sliderFragment.setSliderValue(20); //number of employees
         businessPage.nextButton.click();
-        browser.pause(5000);        
+        browser.pause(3000);
         // sliderFragment.moveIt(2010);
-        businessPage.setSliderValue(2010); //year founded
-        businessPage.nextButton.click();        
-        browser.pause(5000);      
-        businessPage.setSliderValue(1);  //weight limiy
+        sliderFragment.setSliderValue(2010); //year founded
         businessPage.nextButton.click();
-        browser.pause(5000);
+        browser.pause(2500);
+        sliderFragment.setSliderValue(1); //weight limiy
+        businessPage.nextButton.click();
+        browser.pause(2500);
         businessPage.noButton.click(); // delivery
-        browser.pause(5000);
-        businessPage.setSliderValue("6:00 pm"); //closing time
+        browser.pause(2500);
+        sliderFragment.setSliderValue("6:00 pm"); //closing time
         businessPage.nextButton.click();
-        browser.pause(5000);
-        businessPage.setSliderValue(7000); //place space
+        browser.pause(2500);
+        //sliderFragment.setSliderValue(7000); //place space
         businessPage.nextButton.click();
-        browser.pause(15000);
+        browser.pause(16000);
+        businessPage.getXmodQuestionLabel();
         businessPage.noButton.click(); //xMod
-        browser.pause(5000);
+        browser.pause(2500);
         businessPage.nextButton.click(); // claims no.
-        browser.pause(5000);
+        browser.pause(2500);
     })
     it("Fill Sign-up form", () => {
         businessPage.getFirstNameInput().setValue(stringValues.user_name);
@@ -79,7 +82,10 @@ describe("Smoke Testing", function() {
         browser.pause(5000);
     })
     it("Set payrolls amounts", () => {
-
-
+        sliderFragment.setSliderValue("10K", 1)
+        sliderFragment.setSliderValue("5K", 2)
+        sliderFragment.setSliderValue("5K", 3)
+        businessPage.nextButton.click()
+        browser.pause(8000);
     })
 })
