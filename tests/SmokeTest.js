@@ -63,9 +63,9 @@ describe("Smoke Testing", function() {
         sliderFragment.setSliderValue("6:00 pm"); //closing time
         businessPage.nextButton.click();
         browser.pause(2500);
-        //sliderFragment.setSliderValue(7000); //place space
+        sliderFragment.setSliderValue(7000); //place space
         businessPage.nextButton.click();
-        browser.pause(16000);
+        browser.pause(20000);
         businessPage.getXmodQuestionLabel();
         businessPage.noButton.click(); //xMod
         browser.pause(2500);
@@ -82,9 +82,9 @@ describe("Smoke Testing", function() {
         browser.pause(5000);
     })
     it("Set payrolls amounts", () => {
-        sliderFragment.setSliderValue("10K", 1)
-        sliderFragment.setSliderValue("5K", 2)
-        sliderFragment.setSliderValue("5K", 3)
+        sliderFragment.setSliderValue("$10K", 1)
+        sliderFragment.setSliderValue("$5K", 2)
+        sliderFragment.setSliderValue("$5K", 3)
         businessPage.nextButton.click()
         browser.pause(8000);
     })

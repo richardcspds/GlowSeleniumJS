@@ -4,9 +4,60 @@ class SliderFragment {
     }
 
     moveIt(target, index = 1) {
-        //TODO: Add "WaitUntil" method here
+        var sliderComponent = this.getSliderComponent(index)
+        var slider = sliderComponent[0].value
+        var valueNow = sliderComponent[1].value
+        var minValue = sliderComponent[2].value
+        var maxValue = sliderComponent[3].value
+        
+        if (valueNow < target) {
+            for (let i = minValue; i < target; i++) {
+            var _sliderComponent = this.getSliderComponent(index)
+            var _valueNow = _sliderComponent[1].value
+            if (_valueNow == target) {
+                break;
+            }
+            slider.keys('\uE05A');
+
+        }
+        } else {
+            for (let i = valueNow; i > target; i--) {
+
+                var _sliderComponent = this.getSliderComponent(index)
+                var _valueNow = _sliderComponent[1].value
+                console.log("VALUE:" + _valueNow);
+                if (_valueNow == target) {
+                    break;
+                }
+                slider.keys('\uE058');
+            }
+        }
+    }
+
+    /**
+     * Slider methods
+     **/
+    setSliderValue(value, index = 1) {
+        if (typeof value === "number") {
+            this.moveIt(value, index)
+        } else if (typeof value === "string") {
+            if (value.includes(":")) {
+                var target = this.getClosingTimeTarget(value)
+                this.moveIt(target, index)
+            } else if (value.includes(["K", "M"])) {
+                // var target = getPayrollTarget(value)
+                this.moveIt(target, index)
+            }
+        }
+    }
+
+    getSliderComponent(index) {
+        var ret_slider = []
         var locator = this.sliderButton + "[" + index + "]"
-        var slider = $(locator);
+        browser.waitUntil(() => {
+            return $(locator).waitForExist();
+        });
+        var slider = $(locator)
         var valueNow = parseInt(slider.getAttribute("aria-valuenow"), 10);
         var minValue = parseInt(slider.getAttribute("aria-valuemin"), 10);
         var maxValue = parseInt(slider.getAttribute("aria-valuemax"), 10);
@@ -14,36 +65,24 @@ class SliderFragment {
         //     target = maxValue;
         // }
         slider.click();
+        ret_slider.push({
+            name: "slider",
+            value: slider
+        })
+        ret_slider.push({
+            name: "valueNow",
+            value: valueNow
+        })
+        ret_slider.push({
+            name: "minValue",
+            value: minValue
+        })
+        ret_slider.push({
+            name: "maxValue",
+            value: maxValue
+        })
 
-        if (valueNow < target) {
-            for (let i = minValue; i < target; i++) {
-                slider.keys('\uE05A');
-                
-            }
-        } 
-        else {
-            for (let i = valueNow; i > target; i--) {
-                slider.keys('\uE058');
-            }
-        }
-    }
-    /**
-     * Slider methods
-     **/ 
-    setSliderValue(value, index = 1){
-        if (typeof value === "number"){
-            this.moveIt(value, index)
-        }
-        else if (typeof value === "string"){
-            if (value.includes(":")){
-                var target = this.getClosingTimeTarget(value)
-                this.moveIt(target, index)
-            }
-            else if (value.includes(["K","M"])){
-                // var target = getPayrollTarget(value)
-                this.moveIt(target, index)
-            }
-        }
+        return ret_slider
     }
 
     getClosingTimeTarget(value){
@@ -55,7 +94,7 @@ class SliderFragment {
          "3:00 am": 40, "3:30 am": 41, "4:00 am": 42, "4:30 am": 43, "5:00 am": 44, "5:30 am": 45, "24 hours": 46 }
          return closeTimeValue[value]            
     }
-
 }
 
 export default new SliderFragment()
+
