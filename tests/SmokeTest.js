@@ -86,6 +86,7 @@ describe("Smoke Testing", function() {
         sliderFragment.setSliderValue("$5K", 2)
         sliderFragment.setSliderValue("$5K", 3)
         businessPage.nextButton.click()
+        //businessPage.submitButton.click()
         browser.pause(8000);
     })
 })

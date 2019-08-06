@@ -1,3 +1,5 @@
+import { isString } from "util";
+
 class SliderFragment {
     constructor() {
         this.sliderButton = "//div[@role = 'slider']"
@@ -9,7 +11,7 @@ class SliderFragment {
         var valueNow = sliderComponent[1].value
         var minValue = sliderComponent[2].value
         var maxValue = sliderComponent[3].value
-        
+
         if (valueNow < target) {
             for (let i = minValue; i < target; i++) {
             var _sliderComponent = this.getSliderComponent(index)
@@ -45,7 +47,7 @@ class SliderFragment {
                 var target = this.getClosingTimeTarget(value)
                 this.moveIt(target, index)
             } else if (value.includes(["K", "M"])) {
-                // var target = getPayrollTarget(value)
+                //var target = getPayrollTarget(value)
                 this.moveIt(target, index)
             }
         }
@@ -93,6 +95,52 @@ class SliderFragment {
          "11:00 pm": 32, "11:30 pm": 33, "12:00 am": 34, "12:30 am": 35, "1:00 am": 36, "1:30 am": 37, "2:00 am": 38, "2:30 am": 39,
          "3:00 am": 40, "3:30 am": 41, "4:00 am": 42, "4:30 am": 43, "5:00 am": 44, "5:30 am": 45, "24 hours": 46 }
          return closeTimeValue[value]            
+    }
+
+    getPayrollTarget(minValue, maxValue){
+        var payrollAmount = {}
+        var amount = 0
+        for(let i = minValue; i < maxValue;){
+            if(i <= 100){
+                payrollAmount.push({amount: "$" + amount + "K", value: i})
+                if (i == 100){
+                    amount += 5
+                }
+                else{
+                    amount += 1
+                }
+                i += 1
+            }
+            else if(i <= 180){
+                payrollAmount.push({amount: "$" + amount + "K", value: i})
+                if (i == 180){
+                    amount += 10
+                }
+                else{
+                    amount += 5
+                }
+                i += 1
+            }
+            else if(i <= 230){
+                if (i == 230){
+                    amount = 1
+                    payrollAmount.push({amount: "$" + amount + "M", value: i})
+                    amount += 0.1
+                }
+                else{
+                    payrollAmount.push({amount: "$" + amount + "K", value: i})
+                    amount += 10
+                }
+                i += 1
+            }     
+            else if (i <= maxValue){
+            }    
+
+              
+
+        }
+        
+
     }
 }
 
