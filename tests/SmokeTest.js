@@ -4,7 +4,9 @@ import calendarFragment from "../pages/fragments/calendarFragment"
 import sliderFragment from "../pages/fragments/sliderFragments"
 var stringValues = require("../values/strings.json")
 import allureReporter from "@wdio/allure-reporter"
-import { brotliCompressSync } from "zlib";
+import {
+    brotliCompressSync
+} from "zlib";
 
 describe("Smoke Testing", function() {
 
@@ -86,7 +88,7 @@ describe("Smoke Testing", function() {
         sliderFragment.setSliderValue("$5K", 2)
         sliderFragment.setSliderValue("$5K", 3)
         businessPage.nextButton.click()
-        //businessPage.submitButton.click()
+            //businessPage.submitButton.click()
         browser.pause(8000);
     })
 })
