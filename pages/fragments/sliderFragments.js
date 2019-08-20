@@ -11,26 +11,14 @@ class SliderFragment {
         var valueNow = sliderComponent[1].value
         var minValue = sliderComponent[2].value
         var maxValue = sliderComponent[3].value
+        var interval = sliderComponent[4].value
 
         if (valueNow < target) {
-            for (let i = minValue; i < target; i++) {
-            var _sliderComponent = this.getSliderComponent(index)
-            var _valueNow = _sliderComponent[1].value
-            if (_valueNow == target) {
-                break;
-            }
+            for (let i = minValue; i < target; i = i + interval) {
             slider.keys('\uE05A');
-
         }
         } else {
-            for (let i = valueNow; i > target; i--) {
-
-                var _sliderComponent = this.getSliderComponent(index)
-                var _valueNow = _sliderComponent[1].value
-                console.log("VALUE:" + _valueNow);
-                if (_valueNow == target) {
-                    break;
-                }
+            for (let i = valueNow; i > target; i= i - interval) {
                 slider.keys('\uE058');
             }
         }
@@ -46,8 +34,9 @@ class SliderFragment {
             if (value.includes(":")) {
                 var target = this.getClosingTimeTarget(value)
                 this.moveIt(target, index)
-            } else if (value.includes(["K", "M"])) {
-                //var target = getPayrollTarget(value)
+            } 
+            else if (value.includes(["K", "M"])) {
+                var target = getPayrollTarget(value)
                 this.moveIt(target, index)
             }
         }
@@ -63,10 +52,17 @@ class SliderFragment {
         var valueNow = parseInt(slider.getAttribute("aria-valuenow"), 10);
         var minValue = parseInt(slider.getAttribute("aria-valuemin"), 10);
         var maxValue = parseInt(slider.getAttribute("aria-valuemax"), 10);
+
+        slider.click();
+        slider.keys('\uE05A');
+        var temp_slider = $(locator);
+        var interval = Math.abs(parseInt(temp_slider.getAttribute("aria-valuenow"), 10)) - valueNow;
+        slider.keys('\uE058');             
+
         // if (target > maxValue){
         //     target = maxValue;
         // }
-        slider.click();
+        
         ret_slider.push({
             name: "slider",
             value: slider
@@ -82,6 +78,10 @@ class SliderFragment {
         ret_slider.push({
             name: "maxValue",
             value: maxValue
+        })
+        ret_slider.push({
+            name:"interval",
+            value:interval
         })
 
         return ret_slider
@@ -134,13 +134,18 @@ class SliderFragment {
                 i += 1
             }     
             else if (i <= maxValue){
-            }    
-
-              
-
+                if (toString(amount).slice(".").pop() == "0"){
+                    amount.parseInt()
+                    payrollAmount.push({amount: "$" + amount + "M", value: i})
+                    amount += 0.1
+                }
+                else {
+                    payrollAmount.push({amount: "$" + amount + "M", value: i})
+                    amount += 0.1
+                }
+                i += 1
+            }
         }
-        
-
     }
 }
 

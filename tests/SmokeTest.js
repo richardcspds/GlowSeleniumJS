@@ -4,7 +4,9 @@ import calendarFragment from "../pages/fragments/calendarFragment"
 import sliderFragment from "../pages/fragments/sliderFragments"
 var stringValues = require("../values/strings.json")
 import allureReporter from "@wdio/allure-reporter"
-import { brotliCompressSync } from "zlib";
+import {
+    brotliCompressSync
+} from "zlib";
 
 describe("Smoke Testing", function() {
 
@@ -47,28 +49,27 @@ describe("Smoke Testing", function() {
 
         // sliderFragment.moveIt(20);
         businessPage.getEmployeesQuestionLabel();
-        browser.pause(2500);
         sliderFragment.setSliderValue(20); //number of employees
         businessPage.nextButton.click();
-        browser.pause(3000);
+        browser.pause(4000);
         // sliderFragment.moveIt(2010);
         sliderFragment.setSliderValue(2010); //year founded
         businessPage.nextButton.click();
-        browser.pause(2500);
+        browser.pause(4000);
         sliderFragment.setSliderValue(1); //weight limiy
         businessPage.nextButton.click();
-        browser.pause(2500);
+        browser.pause(4000);
         businessPage.noButton.click(); // delivery
-        browser.pause(2500);
+        browser.pause(4000);
         sliderFragment.setSliderValue("6:00 pm"); //closing time
         businessPage.nextButton.click();
-        browser.pause(2500);
+        browser.pause(4000);
         sliderFragment.setSliderValue(7000); //place space
         businessPage.nextButton.click();
         browser.pause(20000);
         businessPage.getXmodQuestionLabel();
         businessPage.noButton.click(); //xMod
-        browser.pause(2500);
+        browser.pause(4000);
         businessPage.nextButton.click(); // claims no.
         browser.pause(2500);
     })
@@ -86,7 +87,7 @@ describe("Smoke Testing", function() {
         sliderFragment.setSliderValue("$5K", 2)
         sliderFragment.setSliderValue("$5K", 3)
         businessPage.nextButton.click()
-        //businessPage.submitButton.click()
+            //businessPage.submitButton.click()
         browser.pause(8000);
     })
 })

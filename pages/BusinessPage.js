@@ -10,8 +10,8 @@ class BusinessPage extends BasePage {
          * ELEMENTS
          **/
         //inputs
-        this.bpNameInput = "//*[@placeholder ='Business Name']";
-        this.bpAddressInput = "//*[@placeholder ='Business Address']";
+        this.bpNameInput = "//*[contains(@placeholder, 'Business Name')]";
+        this.bpAddressInput = "//*[contains(@placeholder, 'Address')]";
         this.bpFirstNameInput = "#firstName"
         this.bpLastNameInput = "#lastName"
         this.bpWorkEmailInput = "#workEmail"
@@ -36,7 +36,7 @@ class BusinessPage extends BasePage {
         this.bpIndustryLabel = "//div[text() = '{0}']";
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
-        this.url = "https://apply.staging.glow.co";
+        this.url = "https://apply.dev.glow.co";
     }
 
     /**
