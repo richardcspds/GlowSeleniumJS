@@ -1,6 +1,9 @@
 import BasePage from "./BasePage";
 import dateFormat from "dateformat";
-import { element,readonly} from "../utils/Decorators";
+import {
+    element,
+    readonly
+} from "../utils/Decorators";
 import calendarFragment from "../pages/fragments/calendarFragment"
 
 class BusinessPage extends BasePage {
@@ -16,12 +19,12 @@ class BusinessPage extends BasePage {
         this.bpLastNameInput = "#lastName"
         this.bpWorkEmailInput = "#workEmail"
         this.bpPhoneNumberInput = "#phone"
-        //labels
+            //labels
         this.bpBusinessNameLabel = "//h1/span[contains(text(), 'the name')]";
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
         this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
         this.bpXmodQuestionLabel = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
-        //dropdowns
+            //dropdowns
         this.bpNameDropDown = '//*[@id="Main"]/div/div[2]/div/div';
         this.bpAddressDropDown = "//div[contains(@class, 'dropdown-item')]";
         //buttons
@@ -36,7 +39,7 @@ class BusinessPage extends BasePage {
         this.bpIndustryLabel = "//div[text() = '{0}']";
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
-        this.url = "https://apply.dev.glow.co";
+
     }
 
     /**
@@ -75,16 +78,17 @@ class BusinessPage extends BasePage {
         //labels
     @element(browser)
     getAddressConfirmationLabel() {
-            return this.bpAddressConfirmationLabel;
-        }
+        return this.bpAddressConfirmationLabel;
+    }
+
     @element(browser)
-    getEmployeesQuestionLabel(){
+    getEmployeesQuestionLabel() {
         return this.bpEmployeesQuestionLabel;
     }
     @element(browser)
-    getXmodQuestionLabel(){
-        return this.bpXmodQuestionLabel;
-    }
+    getXmodQuestionLabel() {
+            return this.bpXmodQuestionLabel;
+        }
         //butons
     get primaryButton() {
         return $(this.bpPrimaryButton);
@@ -112,7 +116,7 @@ class BusinessPage extends BasePage {
     }
 
     get getURL() {
-        return this.url;
+        return this.baseUrl;
     }
 
     /**
