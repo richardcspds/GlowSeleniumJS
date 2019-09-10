@@ -5,13 +5,12 @@ export function element(browser) {
         let originalFunc = descriptor.value;
         descriptor.value = function(...args) {
             let _locator = originalFunc.call(this);
-            browser.waitUntil(() => {
-                return $(_locator).waitForExist();
-            });
+            $(_locator).waitForDisplayed(20000)
             $(_locator).scrollIntoView();
+            browser.takeScreenshot();
             return $(_locator);
         };
-        browser.takeScreenshot();
+        // 
         return descriptor;
     };
 }

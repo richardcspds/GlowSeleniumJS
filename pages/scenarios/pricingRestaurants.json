@@ -1,0 +1,40 @@
+[{
+        "test_name": "R1",
+        "test_order": 1,
+        "bussines_name": "Domo",
+        "address": "25 laguna st san francisco california",
+        "industry": "Restaurants",
+        "category": "Fine Dinings",
+        "policy_start_date": 2,
+        "numbers_employee": 20,
+        "year_founded": 2014,
+        "delivery_catering": "No",
+        "live_music": "No",
+        "latest_closing": "24 Hours"
+
+    },
+    {
+        "test_name": "R2",
+        "test_order": 2,
+        "business_name": "Domo",
+        "address": "25 laguna st san francisco california",
+        "industry": "Restaurants",
+        "category": "Fine Dining",
+        "policy_start_date": 2,
+        "numbers_employee": 20,
+        "year_founded": 2019,
+        "delivery_catering": "No",
+        "live_music": "No",
+        "latest_closing": "6:00 pm",
+        "bouncers": "No",
+        "fryer": "Yes",
+        "grease_trap": "Yes",
+        "x_mod": "No",
+        "claims_last_months": "2",
+        "user_name": "Steve",
+        "user_lastname": "Jobs",
+        "user_email": "steve@glow.co",
+        "user_phone": "3698521478"
+    }
+
+]
