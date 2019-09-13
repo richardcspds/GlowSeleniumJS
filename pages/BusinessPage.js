@@ -85,23 +85,23 @@ class BusinessPage extends BasePage {
     }
     @element(browser)
     getXmodQuestionLabel() {
-            return this.bpXmodQuestionLabel;
+        return this.bpXmodQuestionLabel;
+    }
+    @element(browser)
+    getsliderYearFounded() {
+            return this.sliderYearFounded;
         }
-    @element(browser)
-    getsliderYearFounded(){
-        return this.sliderYearFounded;
-    }
         //butons
-  
+
     get primaryButton() {
-        return $(this.bpPrimaryButton);
-    }
-    @element(browser)
-    nextButton() {
-        return $(this.bpNextButton);
-    }
-    @element(browser)
-    noButton() {
+            return $(this.bpPrimaryButton);
+        }
+        // @element(browser)
+    get nextButton() {
+            return $(this.bpNextButton);
+        }
+        // @element(browser)
+    get noButton() {
         return $(this.bpNoButton);
     }
     get yesButton() {

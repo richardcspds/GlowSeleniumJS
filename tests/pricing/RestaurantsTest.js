@@ -23,36 +23,36 @@ describe("Pricing Restaurants", function() {
         businessPage.getAddressInput().setValue(scenario.address)
         allureReporter.addStep("Select business address from dropdown")
         businessPage.selectDropDownByIndex().click()
-        allureReporter.addStep("Confirm address", 
+        allureReporter.addStep("Confirm address",
             businessPage.getAddressConfirmationLabel()
         )
-        
+
         businessPage.primaryButton.click()
         allureReporter.addStep("Select Industry")
         businessPage.selectIndustry(scenario.industry).click()
-        console.log(businessPage.nextButton())
+        businessPage.nextButton.click()
         allureReporter.addStep("Select Category")
         businessPage.selectCategory(scenario.category).click()
-        businessPage.nextButton().click()
+        businessPage.nextButton.click()
 
         browser.pause(2500);
         calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
-        businessPage.nextButton().click()
+        businessPage.nextButton.click()
 
         // Sliders
 
         businessPage.getEmployeesQuestionLabel();
         sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
-        businessPage.nextButton().click();
+        businessPage.nextButton.click();
         businessPage.getsliderYearFounded();
-        sliderFragment.setSliderValue(scenario.year_founded); //year founded
-        businessPage.nextButton().click();
-        businessPage.noButton().click(); // delivery
-        // browser.pause(4000);
-        // businessPage.noButton.click(); // Music
-        // sliderFragment.setSliderValue(scenario.latest_closing); //closing time
-        // businessPage.nextButton.click();
-        // browser.pause(4000);
+        sliderFragment.setSliderValue(scenario.year_founded.toString()); //year founded
+        businessPage.nextButton.click();
+        businessPage.noButton.click(); // delivery
+        browser.pause(4000);
+        businessPage.noButton.click(); // Music
+        sliderFragment.setSliderValue(scenario.latest_closing); //closing time
+        businessPage.nextButton.click();
+        browser.pause(4000);
         // businessPage.yesButton.click(); // Fryer
         // browser.pause(4000);
         // businessPage.yesButton.click(); // Grease trap
