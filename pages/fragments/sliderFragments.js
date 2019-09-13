@@ -1,7 +1,9 @@
 import {
     element
 } from "../../utils/Decorators";
-import {closeTimeValue } from "../fragments/closTimeValues";
+import {
+    closeTimeValue
+} from "../fragments/closeTimeValues";
 
 class SliderFragment {
     constructor() {
@@ -100,7 +102,7 @@ class SliderFragment {
         var newValue = value.replace("$", "")
         newValue = newValue.replace("K", "")
         return newValue
-    }    
+    }
 
 }
 
