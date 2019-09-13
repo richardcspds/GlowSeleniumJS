@@ -2,7 +2,6 @@
 import businessPage from "../../pages/BusinessPage"
 import calendarFragment from "../../pages/fragments/calendarFragment"
 import sliderFragment from "../../pages/fragments/sliderFragments"
-// var stringValues = require("../../values/strings.json")
 import allureReporter from "@wdio/allure-reporter"
 import pricingScenarios from "../../pages/scenarios/pricingRestaurants.json"
 
@@ -11,8 +10,6 @@ describe("Pricing Restaurants", function() {
     it("R2", () => {
 
         var scenario = pricingScenarios[1]
-        console.log(scenario.business_name);
-
         allureReporter.addArgument("URL", businessPage.getURL)
         allureReporter.addStep("Go to glow page", [businessPage.visit()])
         allureReporter.addStep("Insert business name")
@@ -26,8 +23,10 @@ describe("Pricing Restaurants", function() {
         businessPage.getAddressInput().setValue(scenario.address)
         allureReporter.addStep("Select business address from dropdown")
         businessPage.selectDropDownByIndex().click()
-        allureReporter.addStep("Confirm address")
-        businessPage.getAddressConfirmationLabel()
+        allureReporter.addStep("Confirm address",
+            businessPage.getAddressConfirmationLabel()
+        )
+
         businessPage.primaryButton.click()
         allureReporter.addStep("Select Industry")
         businessPage.selectIndustry(scenario.industry).click()
@@ -35,9 +34,6 @@ describe("Pricing Restaurants", function() {
         allureReporter.addStep("Select Category")
         businessPage.selectCategory(scenario.category).click()
         businessPage.nextButton.click()
-            //Select sub category
-            // businessPage.selectSubCategory(stringValues.company_subcategory).click()
-            // businessPage.nextButton.click()
 
         browser.pause(2500);
         calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
@@ -48,10 +44,9 @@ describe("Pricing Restaurants", function() {
         businessPage.getEmployeesQuestionLabel();
         sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
         businessPage.nextButton.click();
-        browser.pause(4000);
+        businessPage.getsliderYearFounded();
         sliderFragment.setSliderValue(scenario.year_founded); //year founded
         businessPage.nextButton.click();
-        browser.pause(4000);
         businessPage.noButton.click(); // delivery
         browser.pause(4000);
         businessPage.noButton.click(); // Music

@@ -1,10 +1,7 @@
 import BasePage from "./BasePage";
-import dateFormat from "dateformat";
 import {
-    element,
-    readonly
+    element
 } from "../utils/Decorators";
-import calendarFragment from "../pages/fragments/calendarFragment"
 
 class BusinessPage extends BasePage {
     constructor() {
@@ -39,7 +36,8 @@ class BusinessPage extends BasePage {
         this.bpIndustryLabel = "//div[text() = '{0}']";
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
-
+        //TODO: Divide this class
+        this.sliderYearFounded = "//div[text()='What year was your business formed in?']"
     }
 
     /**
@@ -87,15 +85,22 @@ class BusinessPage extends BasePage {
     }
     @element(browser)
     getXmodQuestionLabel() {
-            return this.bpXmodQuestionLabel;
+        return this.bpXmodQuestionLabel;
+    }
+    @element(browser)
+    getsliderYearFounded() {
+            return this.sliderYearFounded;
         }
         //butons
+
     get primaryButton() {
-        return $(this.bpPrimaryButton);
-    }
+            return $(this.bpPrimaryButton);
+        }
+        // @element(browser)
     get nextButton() {
-        return $(this.bpNextButton);
-    }
+            return $(this.bpNextButton);
+        }
+        // @element(browser)
     get noButton() {
         return $(this.bpNoButton);
     }
