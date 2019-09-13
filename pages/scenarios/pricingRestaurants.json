@@ -7,7 +7,7 @@
         "category": "Fine Dinings",
         "policy_start_date": 2,
         "numbers_employee": 20,
-        "year_founded": 2014,
+        "year_founded": "2014",
         "delivery_catering": "No",
         "live_music": "No",
         "latest_closing": "24 Hours"
@@ -22,7 +22,7 @@
         "category": "Fine Dining",
         "policy_start_date": 2,
         "numbers_employee": 20,
-        "year_founded": 2019,
+        "year_founded": "2019",
         "delivery_catering": "No",
         "live_music": "No",
         "latest_closing": "6:00 pm",

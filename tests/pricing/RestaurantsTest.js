@@ -45,7 +45,7 @@ describe("Pricing Restaurants", function() {
         sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
         businessPage.nextButton.click();
         businessPage.getsliderYearFounded();
-        sliderFragment.setSliderValue(scenario.year_founded.toString()); //year founded
+        sliderFragment.setSliderValue(scenario.year_founded); //year founded
         businessPage.nextButton.click();
         businessPage.noButton.click(); // delivery
         browser.pause(4000);
@@ -53,28 +53,28 @@ describe("Pricing Restaurants", function() {
         sliderFragment.setSliderValue(scenario.latest_closing); //closing time
         businessPage.nextButton.click();
         browser.pause(4000);
-        // businessPage.yesButton.click(); // Fryer
-        // browser.pause(4000);
-        // businessPage.yesButton.click(); // Grease trap
-        // businessPage.getXmodQuestionLabel();
-        // businessPage.noButton.click(); //xMod TODO: Add variable with the escenarios
-        // browser.pause(4000);
-        // businessPage.nextButton.click(); // claims no.
-        // browser.pause(2500);
+        businessPage.yesButton.click(); // Fryer
+        browser.pause(4000);
+        businessPage.yesButton.click(); // Grease trap
+        businessPage.getXmodQuestionLabel();
+        businessPage.noButton.click(); //xMod TODO: Add variable with the escenarios
+        browser.pause(4000);
+        businessPage.nextButton.click(); // claims no.
+        browser.pause(2500);
 
-        // businessPage.getFirstNameInput().setValue(scenario.user_name);
-        // businessPage.getLastNameInput().setValue(scenario.user_lastname);
-        // businessPage.getWorkEmailInput().setValue(scenario.user_email);
-        // businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
-        // businessPage.termsOfServicesCheckbox.click();
-        // businessPage.submitButton.click();
-        // // browser.pause(5000);
-        // sliderFragment.setSliderValue("$30K", 0)
-        // sliderFragment.setSliderValue("$5K", 1)
-        // sliderFragment.setSliderValue("$0K", 2)
-        // businessPage.nextButton.click()
-        //     // businessPage.submitButton.click()
-        // browser.pause(16000);
+        businessPage.getFirstNameInput().setValue(scenario.user_name);
+        businessPage.getLastNameInput().setValue(scenario.user_lastname);
+        businessPage.getWorkEmailInput().setValue(scenario.user_email);
+        businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
+        businessPage.termsOfServicesCheckbox.click();
+        businessPage.submitButton.click();
+        // browser.pause(5000);
+        sliderFragment.setSliderValue("$30K", 0)
+        sliderFragment.setSliderValue("$5K", 1)
+        sliderFragment.setSliderValue("$0K", 2)
+        businessPage.nextButton.click()
+            // businessPage.submitButton.click()
+        browser.pause(16000);
 
 
     })
