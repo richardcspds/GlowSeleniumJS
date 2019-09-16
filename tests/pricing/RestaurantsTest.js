@@ -7,7 +7,7 @@ import pricingScenarios from "../../pages/scenarios/pricingRestaurants.json"
 
 describe("Pricing Restaurants", function() {
 
-    it("R2", () => {
+    it("R2 @smoke", () => {
 
         var scenario = pricingScenarios[1]
         allureReporter.addArgument("URL", businessPage.getURL)

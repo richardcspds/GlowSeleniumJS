@@ -9,6 +9,8 @@
     "scripts": {
         "test": "wdio wdio.conf.js",
         "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",
+        "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
+        "regression": "wdio wdio.conf.js --mochaOpts.grep=@regression",
         "repl": "wdio repl chrome"
     },
     "author": "Richard Cespedes",
