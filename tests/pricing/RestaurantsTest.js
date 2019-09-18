@@ -4,6 +4,7 @@ import calendarFragment from "../../pages/fragments/calendarFragment"
 import sliderFragment from "../../pages/fragments/sliderFragments"
 import allureReporter from "@wdio/allure-reporter"
 import pricingScenarios from "../../pages/scenarios/pricingRestaurants.json"
+import estimatePage from '../../pages/EstimatePage';
 
 describe("Pricing Restaurants", function() {
 
@@ -16,7 +17,7 @@ describe("Pricing Restaurants", function() {
         businessPage.visit()
         allureReporter.endStep()
         allureReporter.addStep("Enter Business Info")
-        
+
         allureReporter.startStep("Insert business name")
         businessPage.getNameInput().setValue(scenario.business_name)
         allureReporter.endStep()     
@@ -47,18 +48,18 @@ describe("Pricing Restaurants", function() {
         businessPage.nextButton.click()
         businessPage.selectCategory(scenario.category).click()
         businessPage.nextButton.click()
+        businessPage.getPolicyStartLabel()
         allureReporter.endStep()
 
-        allureReporter.startStep("Select Policy Start Date")
-        businessPage.getPolicyStartLabel()
+        allureReporter.startStep("Select Policy Start Date")        
         calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
         businessPage.nextButton.click()
+        businessPage.getEmployeesQuestionLabel();
         allureReporter.endStep()
 
         // Sliders
 
-        allureReporter.startStep("Answer Industry questions")
-        businessPage.getEmployeesQuestionLabel();
+        allureReporter.startStep("Answer Industry questions")        
         sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
         businessPage.nextButton.click();
         businessPage.getsliderYearFounded();
@@ -82,24 +83,43 @@ describe("Pricing Restaurants", function() {
         businessPage.nextButton.click(); // claims no.
         businessPage.getClaims100kQuestion()
         businessPage.yesNoButton(scenario.claims_100k).click();
+        businessPage.getQuoteIsReady();
         allureReporter.endStep()
 
-        allureReporter.startStep("Fill Sign-up form")
-        businessPage.getQuoteIsReady();
+        allureReporter.startStep("Fill Sign-up form")        
         businessPage.getFirstNameInput().setValue(scenario.user_name);
         businessPage.getLastNameInput().setValue(scenario.user_lastname);
         businessPage.getWorkEmailInput().setValue(scenario.user_email);
         businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
         businessPage.termsOfServicesCheckbox.click();
-        businessPage.submitButton.click();
+        businessPage.submitButton.click();                
+        businessPage.getMonthlyPayroll();
         allureReporter.endStep()
-        // // browser.pause(5000);
+
+        allureReporter.startStep("Set Payroll")
+        sliderFragment.setSliderValue(scenario.staff_payroll, 0)
+        sliderFragment.setSliderValue(scenario.outside_sales_payroll, 1)
+        sliderFragment.setSliderValue(scenario.clerical_payroll, 2)
+        businessPage.nextButton.click();
         // sliderFragment.setSliderValue("$30K", 0)
         // sliderFragment.setSliderValue("$5K", 1)
         // sliderFragment.setSliderValue("$0K", 2)
         // businessPage.nextButton.click()
         //     // businessPage.submitButton.click()
         // browser.pause(16000);
+        allureReporter.endStep()
+
+        allureReporter.startStep("Get Estimate Values")
+        estimatePage.getTotalEstimateAmountLabel()
+        allureReporter.addStep("Total Monthly Estimate: " + estimatePage.getTotalEstimateAmount() + " ", 
+            estimatePage.getTotalEstimateAmount())
+        allureReporter.addStep("Total Workers' Compensation Estimate: " + estimatePage.getWorkersCompensationAmount() + " " , 
+            estimatePage.getWorkersCompensationAmount())
+        allureReporter.addStep("Total Accident Benefits Estimate: " + estimatePage.getAccidentBenefitsAmount() + " ", 
+            estimatePage.getAccidentBenefitsAmount())
+        allureReporter.endStep()
+
+        
 
 
     })
