@@ -3,7 +3,7 @@ import {
 } from "../../utils/Decorators";
 import {
     closeTimeValue
-} from "../fragments/closeTimeValues";
+} from "../../pages/fragments/closeTimeValues";
 
 class SliderFragment {
     constructor() {
