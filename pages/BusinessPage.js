@@ -21,7 +21,7 @@ class BusinessPage extends BasePage {
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
         this.bpPolicyStartLabel = "//h1[text()= 'When do you want your policy to begin?']";
         this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
-        this.bpXmodQuestionLabel = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
+        
             //dropdowns
         this.bpNameDropDown = '//*[@id="Main"]/div/div[2]/div/div';
         this.bpAddressDropDown = "//div[contains(@class, 'dropdown-item')]";
@@ -43,8 +43,11 @@ class BusinessPage extends BasePage {
         this.bpEntertaimentQuestionDiv = "//div[text() = 'Do you have live music or entertainment?']"
         this.bpClosingTimeQuestionDiv = "//div[text() = 'What is the latest closing time for your business during the week?']"
         this.bpFryerQuestionDiv =  "//div[text() = 'Do you have a fryer?']"
-        
-        
+        this.bpGreaseQuestionDiv = "//div[text() = 'Are you using a grease trap cleaning service?']" 
+        this.bpXmodQuestionDiv = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
+        this.bpClaimsLast4YearsQuestionDiv = "//div[contains(text(), 'Compensation claims in the past 4 years?')]"
+        this.bpClaims100kQuestion = "//div[contains(text(), 'claims where the total loss was greater than $100,000?')]"
+              
     }
 
     /**
@@ -94,11 +97,7 @@ class BusinessPage extends BasePage {
     @element(browser)
     getEmployeesQuestionLabel() {
         return this.bpEmployeesQuestionLabel;
-    }
-    @element(browser)
-    getXmodQuestionLabel() {
-        return this.bpXmodQuestionLabel;
-    }
+    }    
     @element(browser)
     getsliderYearFounded() {
         return this.sliderYearFounded;
@@ -119,6 +118,23 @@ class BusinessPage extends BasePage {
     getFryerQuestion(){
         return this.bpFryerQuestionDiv;
     }
+    @element(browser)
+    getGreaseQuestion(){
+        return this.bpGreaseQuestionDiv;
+    }
+    @element(browser)
+    getXmodQuestion() {
+        return this.bpXmodQuestionDiv;
+    }
+    @element(browser)
+    getClaimsLast4YearsQuestion() {
+        return this.bpClaimsLast4YearsQuestionDiv;
+    }
+    @element(browser)
+    getClaims100kQuestion() {
+        return this.bpClaims100kQuestion;
+    }
+
 
     
         //butons

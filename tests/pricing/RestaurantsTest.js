@@ -70,20 +70,25 @@ describe("Pricing Restaurants", function() {
         businessPage.nextButton.click();
         businessPage.getFryerQuestion();
         businessPage.yesNoButton(scenario.fryer).click(); // Fryer
-        // businessPage.yesButton.click(); // Grease trap
-        // businessPage.getXmodQuestionLabel();
-        // businessPage.noButton.click(); //xMod TODO: Add variable with the escenarios
-        // browser.pause(4000);
-        // businessPage.nextButton.click(); // claims no.
-        // browser.pause(2500);
+        businessPage.getGreaseQuestion();
+        businessPage.yesNoButton(scenario.grease_trap).click(); // Grease trap
+        businessPage.getXmodQuestion();
+        businessPage.yesNoButton(scenario.x_mod).click();
+        businessPage.getClaimsLast4YearsQuestion()
+        sliderFragment.setSliderValue(scenario.claims_last_4_years);
+        businessPage.nextButton.click(); // claims no.
+        businessPage.getClaims100kQuestion()
+        businessPage.yesNoButton(scenario.claims_100k).click();
         allureReporter.endStep()
 
-        // businessPage.getFirstNameInput().setValue(scenario.user_name);
-        // businessPage.getLastNameInput().setValue(scenario.user_lastname);
-        // businessPage.getWorkEmailInput().setValue(scenario.user_email);
-        // businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
-        // businessPage.termsOfServicesCheckbox.click();
-        // businessPage.submitButton.click();
+        allureReporter.startStep("Fill Sign-up form")
+        businessPage.getFirstNameInput().setValue(scenario.user_name);
+        businessPage.getLastNameInput().setValue(scenario.user_lastname);
+        businessPage.getWorkEmailInput().setValue(scenario.user_email);
+        businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
+        businessPage.termsOfServicesCheckbox.click();
+        businessPage.submitButton.click();
+        allureReporter.endStep()
         // // browser.pause(5000);
         // sliderFragment.setSliderValue("$30K", 0)
         // sliderFragment.setSliderValue("$5K", 1)
