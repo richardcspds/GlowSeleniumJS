@@ -39,28 +39,32 @@ describe("Pricing Restaurants", function() {
         businessPage.primaryButton.click()
         allureReporter.endStep()
         allureReporter.endStep()
-        // allureReporter.addStep("Select Industry")
-        // businessPage.selectIndustry(scenario.industry).click()
-        // businessPage.nextButton.click()
-        // allureReporter.addStep("Select Category")
-        // businessPage.selectCategory(scenario.category).click()
-        // businessPage.nextButton.click()
+        allureReporter.startStep("Select Industry")
+        businessPage.selectIndustry(scenario.industry).click()
+        businessPage.nextButton.click()
+        businessPage.selectCategory(scenario.category).click()
+        businessPage.nextButton.click()
+        allureReporter.endStep()
+        allureReporter.startStep("Select Policy Start Date", 
+            businessPage.getPolicyStartLabel()
+        )
+        calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
+        businessPage.nextButton.click()
+        allureReporter.endStep()
 
-        // browser.pause(2500);
-        // calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
-        // businessPage.nextButton.click()
+        // Sliders
 
-        // // Sliders
-
-        // businessPage.getEmployeesQuestionLabel();
-        // sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
-        // businessPage.nextButton.click();
-        // businessPage.getsliderYearFounded();
-        // sliderFragment.setSliderValue(scenario.year_founded); //year founded
-        // businessPage.nextButton.click();
-        // businessPage.noButton.click(); // delivery
-        // browser.pause(4000);
-        // businessPage.noButton.click(); // Music
+        allureReporter.startStep("Answer Industry questions")
+        businessPage.getEmployeesQuestionLabel();
+        sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
+        businessPage.nextButton.click();
+        businessPage.getsliderYearFounded();
+        sliderFragment.setSliderValue(scenario.year_founded); //year founded
+        businessPage.nextButton.click();
+        businessPage.getCateringQuestion();
+        businessPage.noButton.click(); // delivery
+        businessPage.getEntertaimentQuestion()
+        businessPage.noButton.click(); // Music
         // sliderFragment.setSliderValue(scenario.latest_closing); //closing time
         // businessPage.nextButton.click();
         // browser.pause(4000);
@@ -72,6 +76,7 @@ describe("Pricing Restaurants", function() {
         // browser.pause(4000);
         // businessPage.nextButton.click(); // claims no.
         // browser.pause(2500);
+        allureReporter.endStep()
 
         // businessPage.getFirstNameInput().setValue(scenario.user_name);
         // businessPage.getLastNameInput().setValue(scenario.user_lastname);

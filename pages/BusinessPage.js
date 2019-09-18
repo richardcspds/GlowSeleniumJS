@@ -19,6 +19,7 @@ class BusinessPage extends BasePage {
             //labels
         this.bpBusinessNameLabel = "//h1/span[contains(text(), 'the name')]";
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
+        this.bpPolicyStartLabel = "//h1[text()= 'When do you want your policy to begin?']";
         this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
         this.bpXmodQuestionLabel = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
             //dropdowns
@@ -38,6 +39,9 @@ class BusinessPage extends BasePage {
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         //TODO: Divide this class
         this.sliderYearFounded = "//div[text()='What year was your business formed in?']"
+        this.bpCateringQuestionDiv = "//div[text() = 'Do your employees deliver or perform off site catering?']"
+        this.bpEntertaimentQuestionDiv = "//div[text() = 'Do you have live music or entertainment?']"
+        
     }
 
     /**
@@ -80,6 +84,11 @@ class BusinessPage extends BasePage {
     }
 
     @element(browser)
+    getPolicyStartLabel(){
+        return this.bpPolicyStartLabel;
+    }
+
+    @element(browser)
     getEmployeesQuestionLabel() {
         return this.bpEmployeesQuestionLabel;
     }
@@ -89,8 +98,18 @@ class BusinessPage extends BasePage {
     }
     @element(browser)
     getsliderYearFounded() {
-            return this.sliderYearFounded;
-        }
+        return this.sliderYearFounded;
+    }
+    @element(browser)
+    getCateringQuestion(){
+        return this.bpCateringQuestionDiv;
+    }
+    @element(browser)
+    getEntertaimentQuestion(){
+        return this.bpEntertaimentQuestionDiv;
+    }
+
+    
         //butons
 
     get primaryButton() {
