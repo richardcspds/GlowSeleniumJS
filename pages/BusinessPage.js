@@ -41,6 +41,9 @@ class BusinessPage extends BasePage {
         this.sliderYearFounded = "//div[text()='What year was your business formed in?']"
         this.bpCateringQuestionDiv = "//div[text() = 'Do your employees deliver or perform off site catering?']"
         this.bpEntertaimentQuestionDiv = "//div[text() = 'Do you have live music or entertainment?']"
+        this.bpClosingTimeQuestionDiv = "//div[text() = 'What is the latest closing time for your business during the week?']"
+        this.bpFryerQuestionDiv =  "//div[text() = 'Do you have a fryer?']"
+        
         
     }
 
@@ -108,6 +111,14 @@ class BusinessPage extends BasePage {
     getEntertaimentQuestion(){
         return this.bpEntertaimentQuestionDiv;
     }
+    @element(browser)
+    getClosingTimeQuestion(){
+        return this.bpClosingTimeQuestionDiv;
+    }
+    @element(browser)
+    getFryerQuestion(){
+        return this.bpFryerQuestionDiv;
+    }
 
     
         //butons
@@ -126,6 +137,7 @@ class BusinessPage extends BasePage {
     get yesButton() {
         return $(this.bpYesButton);
     }
+    
     get submitButton() {
         return $(this.bpSubmitButton);
     }
@@ -162,6 +174,14 @@ class BusinessPage extends BasePage {
         var subCategory = this.bpSubCategoryLabel.replace("{0}", type);
         this.isDisplayed($(subCategory));
         return $(subCategory);
+    }
+    yesNoButton(target) {
+        if (target == "No"){
+            return this.noButton;
+        }
+        else if (target == "Yes"){
+            return this.yesButton
+        }
     }
 
     visit() {

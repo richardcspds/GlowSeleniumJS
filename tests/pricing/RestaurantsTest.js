@@ -62,14 +62,14 @@ describe("Pricing Restaurants", function() {
         sliderFragment.setSliderValue(scenario.year_founded); //year founded
         businessPage.nextButton.click();
         businessPage.getCateringQuestion();
-        businessPage.noButton.click(); // delivery
+        businessPage.yesNoButton(scenario.delivery_catering).click(); // delivery
         businessPage.getEntertaimentQuestion()
-        businessPage.noButton.click(); // Music
-        // sliderFragment.setSliderValue(scenario.latest_closing); //closing time
-        // businessPage.nextButton.click();
-        // browser.pause(4000);
-        // businessPage.yesButton.click(); // Fryer
-        // browser.pause(4000);
+        businessPage.yesNoButton(scenario.live_music).click(); // Music
+        businessPage.getClosingTimeQuestion()
+        sliderFragment.setSliderValue(scenario.latest_closing); //closing time
+        businessPage.nextButton.click();
+        businessPage.getFryerQuestion();
+        businessPage.yesNoButton(scenario.fryer).click(); // Fryer
         // businessPage.yesButton.click(); // Grease trap
         // businessPage.getXmodQuestionLabel();
         // businessPage.noButton.click(); //xMod TODO: Add variable with the escenarios
