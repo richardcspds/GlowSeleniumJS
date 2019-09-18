@@ -21,6 +21,7 @@ class BusinessPage extends BasePage {
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
         this.bpPolicyStartLabel = "//h1[text()= 'When do you want your policy to begin?']";
         this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
+        this.bpQuoteIsReadyLabel = "//h1[contains(text(), 'Your quote')]"
         
             //dropdowns
         this.bpNameDropDown = '//*[@id="Main"]/div/div[2]/div/div';
@@ -133,6 +134,10 @@ class BusinessPage extends BasePage {
     @element(browser)
     getClaims100kQuestion() {
         return this.bpClaims100kQuestion;
+    }
+    @element(browser)
+    getQuoteIsReady() {
+        return this.bpQuoteIsReadyLabel;
     }
 
 

@@ -16,38 +16,41 @@ describe("Pricing Restaurants", function() {
         businessPage.visit()
         allureReporter.endStep()
         allureReporter.addStep("Enter Business Info")
-        allureReporter.startStep("Enter Business Info")
+        
         allureReporter.startStep("Insert business name")
         businessPage.getNameInput().setValue(scenario.business_name)
-        allureReporter.endStep()        
+        allureReporter.endStep()     
+
         allureReporter.startStep("Select name from dropdown")
         businessPage.getNameDropDown.click()
         allureReporter.endStep()
+
         allureReporter.startStep("Click on next button")
         businessPage.primaryButton.click()
         allureReporter.endStep()
+
         allureReporter.startStep("Insert business address")
         businessPage.getAddressInput().setValue(scenario.address)
         allureReporter.endStep()
+
         allureReporter.startStep("Select business address from dropdown")
         businessPage.selectDropDownByIndex().click()
         allureReporter.endStep()
-        allureReporter.startStep("Confirm address",
-            businessPage.getAddressConfirmationLabel()
-        )
 
+        allureReporter.startStep("Confirm address")        
+        businessPage.getAddressConfirmationLabel()
         businessPage.primaryButton.click()
         allureReporter.endStep()
-        allureReporter.endStep()
+
         allureReporter.startStep("Select Industry")
         businessPage.selectIndustry(scenario.industry).click()
         businessPage.nextButton.click()
         businessPage.selectCategory(scenario.category).click()
         businessPage.nextButton.click()
         allureReporter.endStep()
-        allureReporter.startStep("Select Policy Start Date", 
-            businessPage.getPolicyStartLabel()
-        )
+
+        allureReporter.startStep("Select Policy Start Date")
+        businessPage.getPolicyStartLabel()
         calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
         businessPage.nextButton.click()
         allureReporter.endStep()
@@ -82,6 +85,7 @@ describe("Pricing Restaurants", function() {
         allureReporter.endStep()
 
         allureReporter.startStep("Fill Sign-up form")
+        businessPage.getQuoteIsReady();
         businessPage.getFirstNameInput().setValue(scenario.user_name);
         businessPage.getLastNameInput().setValue(scenario.user_lastname);
         businessPage.getWorkEmailInput().setValue(scenario.user_email);
