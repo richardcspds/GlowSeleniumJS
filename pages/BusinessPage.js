@@ -177,10 +177,6 @@ class BusinessPage extends BasePage {
         return $(this.bpAddressDropDown);
     }
 
-    get getURL() {
-        return this.baseUrl;
-    }
-
     /**
      * METHODS
      **/
