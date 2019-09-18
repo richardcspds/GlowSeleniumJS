@@ -19,11 +19,15 @@ class SliderFragment {
         var interval = sliderComponent[4].value
 
         if (valueNow < target) {
-            for (let i = minValue; i != target; i = i + interval) {                
+            for (let i = minValue; i != target; i = i + 1) {
+                // console.log("Value Now =====>>>>>> " + valueNow)
+                // console.log("Target    =====>>>>>> " + target) 
+                // console.log("interval  =====>>>>>> " + interval)
+                // console.log("i         =====>>>>>> " + i)                 
                 slider.keys('\uE05A');
             }
         } else {
-            for (let i = valueNow; i != target; i = i + interval) {
+            for (let i = valueNow; i != target; i = i - 1) {
                 slider.keys('\uE058');
             }
         }
