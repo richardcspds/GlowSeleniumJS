@@ -35,7 +35,10 @@
         "user_name": "Steve",
         "user_lastname": "Jobs",
         "user_email": "steve@glow.co",
-        "user_phone": "3698521478"
+        "user_phone": "3698521478",
+        "staff_payroll": "30K",
+        "outside_sales_payroll": "0K",
+        "clerical_payroll": "5K"
     }
 
 ]
