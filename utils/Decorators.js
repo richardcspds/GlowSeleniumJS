@@ -7,7 +7,7 @@ export function element(browser) {
             let _locator = originalFunc.call(this);
             $(_locator).waitForDisplayed(20000)
             $(_locator).scrollIntoView();            
-            browser.takeScreenshot();
+            // browser.takeScreenshot();
             return $(_locator);
         };        
         // 

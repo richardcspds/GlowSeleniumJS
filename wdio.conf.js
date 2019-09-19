@@ -215,9 +215,9 @@ exports.config = {
      * @param {Object} test test details
      */
     afterTest: function(test) {
-            if (test.error !== undefined) {
+            // if (test.error !== undefined) {
                 browser.takeScreenshot();
-            }
+            // }
         }
         /**
          * Hook that gets executed after the suite has ended
