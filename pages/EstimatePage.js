@@ -3,6 +3,7 @@ import BasePage from "./BasePage"
 
 class EstimatePage extends BasePage{
     constructor(){
+        super()
         //labels
         this.epTotalMonthlyAmountLabel = "//h1[text() = 'Total Monthly Estimate']"
 
