@@ -314,7 +314,7 @@ describe("Pricing Restaurants", function() {
 
     it("R5 @smoke @smoke_t", () => {
 
-        var scenario = pricingScenarios[4]
+        var scenario = pricingScenarios[2]
         // allureReporter.addArgument("URL", baseUrl)       
         allureReporter.startStep("Go to glow page")
         businessPage.visit()
@@ -379,8 +379,8 @@ describe("Pricing Restaurants", function() {
         businessPage.getClosingTimeQuestion()
         sliderFragment.setSliderValue(scenario.latest_closing); //closing time
         businessPage.nextButton().click();
-        if ((sliderFragment.getClosingTimeTarget(scenario.latest_closing) >= 34 && scenario.category != "Coffee Shop or Café") ||
-            (scenario.category == "" && scenario.alcohol_cook_food == "Yes")){
+        if (sliderFragment.getClosingTimeTarget(scenario.latest_closing) >= 34 && (scenario.category != "Coffee Shop or Café" ||
+            (scenario.category == "Coffee Shop or Café" && scenario.alcohol_cook_food == "Yes"))){
                 businessPage.getbouncersQuestion()
                 businessPage.yesNoButton(scenario.bouncers).click() // Bouncers
         }
@@ -396,10 +396,14 @@ describe("Pricing Restaurants", function() {
         }
         businessPage.getXmodQuestion();
         businessPage.yesNoButton(scenario.x_mod).click(); // xMod
+        if (scenario.x_mod == "Yes"){
+            businessPage.getXmodScoreQuestion()
+            sliderFragment.setSliderValue(scenario.x_mod_score) //xMod score
+        }
         businessPage.getClaimsLast4YearsQuestion()
         sliderFragment.setSliderValue(scenario.claims_last_4_years);
         businessPage.nextButton().click(); // claims no.
-        if (scenario.claims_last_4_years > 0 < 4){
+        if (scenario.claims_last_4_years > 0){
             businessPage.getClaims100kQuestion()
             businessPage.yesNoButton(scenario.claims_100k).click();  // Claims 100K
         }        
@@ -425,7 +429,8 @@ describe("Pricing Restaurants", function() {
 
         allureReporter.startStep("Get Estimate Values")
         estimatePage.getTotalEstimateAmountLabel()  
-        estimatePage.getTotalEstimateAmount()      
+        estimatePage.getTotalEstimateAmount() 
+        browser.pause(1500)     
         allureReporter.addStep("Total Monthly Estimate: " + estimatePage.getTotalEstimateAmount())
         allureReporter.addStep("Total Workers' Compensation Estimate: " + estimatePage.getWorkersCompensationAmount())
         allureReporter.addStep("Total Accident Benefits Estimate: " + estimatePage.getAccidentBenefitsAmount())

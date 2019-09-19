@@ -112,6 +112,7 @@
         "fryer": "No",
         "grease_trap": "No",
         "x_mod": "No",
+        "x_mod_score": 0,
         "claims_last_4_years": 2,
         "claims_100k": "No",
         "user_name": "Steve",

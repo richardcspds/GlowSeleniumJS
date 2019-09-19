@@ -49,6 +49,7 @@ class BusinessPage extends BasePage {
         this.bpFryerQuestionDiv =  "//div[text() = 'Do you have a fryer?']"
         this.bpGreaseQuestionDiv = "//div[text() = 'Are you using a grease trap cleaning service?']" 
         this.bpXmodQuestionDiv = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
+        this.bpXmodScoreQuestionDiv = "//div[contains(text(), 'What is your experience modification factor (xMod)?')]"
         this.bpClaimsLast4YearsQuestionDiv = "//div[contains(text(), 'Compensation claims in the past 4 years?')]"
         this.bpClaims100kQuestion = "//div[contains(text(), 'claims where the total loss was greater than $100,000?')]"
               
@@ -137,6 +138,10 @@ class BusinessPage extends BasePage {
     @element(browser)
     getXmodQuestion() {
         return this.bpXmodQuestionDiv;
+    }
+    @element(browser)
+    getXmodScoreQuestion() {
+        return this.bpXmodScoreQuestionDiv;
     }
     @element(browser)
     getClaimsLast4YearsQuestion() {
