@@ -19,7 +19,7 @@ class SliderFragment {
         var interval = sliderComponent[4].value
 
         if (valueNow < target) {
-            for (let i = minValue; i != target; i = i + 1) {
+            for (let i = valueNow; i != target; i = i + 1) {
                 // console.log("Value Now =====>>>>>> " + valueNow)
                 // console.log("Target    =====>>>>>> " + target) 
                 // console.log("interval  =====>>>>>> " + interval)
@@ -46,12 +46,17 @@ class SliderFragment {
         if (typeof value === "number") {
             this.moveIt(value, index)
         } else if (typeof value === "string") {
-            if (value.includes(":")) {
+            if (value.includes(":") || value.includes("24 hours")) {                
                 var target = this.getClosingTimeTarget(value)
+                
                 this.moveIt(target, index)
             } else if (value.includes("K") || value.includes("M")) {
                 var target = this.getPayrollTarget(value)
                 this.moveIt(target, index)
+            } 
+            else {
+                var target = parseInt(value)
+                this.moveIt(value, index)
             }
         }
     }
@@ -126,25 +131,27 @@ class SliderFragment {
             "6:30 pm": 25,
             "7:00 pm": 26,
             "7:30 pm": 27,
-            "8:30 pm": 28,
-            "9:30 pm": 29,
-            "10:00 pm": 30,
-            "10:30 pm": 31,
-            "11:00 pm": 32,
-            "11:30 pm": 33,
-            "12:00 am": 34,
-            "12:30 am": 35,
-            "1:00 am": 36,
-            "1:30 am": 37,
-            "2:00 am": 38,
-            "2:30 am": 39,
-            "3:00 am": 40,
-            "3:30 am": 41,
-            "4:00 am": 42,
-            "4:30 am": 43,
-            "5:00 am": 44,
-            "5:30 am": 45,
-            "24 hours": 46
+            "8:00 pm": 28,
+            "8:30 pm": 29,
+            "9:00 pm": 30,
+            "9:30 pm": 31,
+            "10:00 pm": 32,
+            "10:30 pm": 33,
+            "11:00 am": 34,
+            "11:30 am": 35,
+            "12:00 am": 36,
+            "12:30 am": 37,
+            "1:00 am": 38,
+            "1:30 am": 39,
+            "2:00 am": 40,
+            "2:30 am": 41,
+            "3:00 am": 42,
+            "3:30 am": 43,
+            "4:00 am": 44,
+            "4:30 am": 45,
+            "5:00 am": 46,
+            "5:30 am": 47,
+            "24 hours": 48  
         }
         return closeTimeValue[value]
     }
