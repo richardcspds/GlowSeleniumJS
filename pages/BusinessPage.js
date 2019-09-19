@@ -1,6 +1,6 @@
 import BasePage from "./BasePage";
 import {
-    element
+    element, button
 } from "../utils/Decorators";
 
 class BusinessPage extends BasePage {
@@ -148,24 +148,25 @@ class BusinessPage extends BasePage {
 
     
         //butons
-
+    //@button(browser)
     get primaryButton() {
-            return $(this.bpPrimaryButton);
-        }
-        // @element(browser)
-    get nextButton() {
-            return $(this.bpNextButton);
-        }
-        // @element(browser)
-    get noButton() {
-        return $(this.bpNoButton);
+        return $(this.bpPrimaryButton);
     }
-    get yesButton() {
-        return $(this.bpYesButton);
+    @button(browser)
+    nextButton() {
+        return this.bpNextButton;
     }
-    
-    get submitButton() {
-        return $(this.bpSubmitButton);
+    @button(browser)
+    noButton() {
+        return this.bpNoButton;
+    }
+    @button(browser)
+    yesButton() {
+        return this.bpYesButton;
+    }
+    @button(browser)
+    submitButton() {
+        return this.bpSubmitButton;
     }
     get termsOfServicesCheckbox() {
         return $(this.bpTermsOfServicesCheckbox);
@@ -199,10 +200,10 @@ class BusinessPage extends BasePage {
     }
     yesNoButton(target) {
         if (target == "No"){
-            return this.noButton;
+            return this.noButton();
         }
         else if (target == "Yes"){
-            return this.yesButton
+            return this.yesButton();
         }
     }
 
