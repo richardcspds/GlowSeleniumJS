@@ -44,15 +44,15 @@ describe("Pricing Restaurants", function() {
 
         allureReporter.startStep("Select Industry")
         businessPage.selectIndustry(scenario.industry).click()
-        businessPage.nextButton.click()
+        businessPage.nextButton().click()
         businessPage.selectCategory(scenario.category).click()
-        businessPage.nextButton.click()
+        businessPage.nextButton().click()
         businessPage.getPolicyStartLabel()
         allureReporter.endStep()
 
         allureReporter.startStep("Select Policy Start Date")        
         calendarFragment.setPolicyDateWeeks(scenario.policy_start_date)
-        businessPage.nextButton.click()
+        businessPage.nextButton().click()
         businessPage.getEmployeesQuestionLabel();
         allureReporter.endStep()
 
@@ -60,17 +60,17 @@ describe("Pricing Restaurants", function() {
 
         allureReporter.startStep("Answer Industry questions")        
         sliderFragment.setSliderValue(scenario.numbers_employee); //number of employees
-        businessPage.nextButton.click();
+        businessPage.nextButton().click();
         businessPage.getsliderYearFounded();
         sliderFragment.setSliderValue(scenario.year_founded); //year founded
-        businessPage.nextButton.click();
+        businessPage.nextButton().click();
         businessPage.getCateringQuestion();
         businessPage.yesNoButton(scenario.delivery_catering).click(); // delivery
         businessPage.getEntertaimentQuestion()
         businessPage.yesNoButton(scenario.live_music).click(); // Music
         businessPage.getClosingTimeQuestion()
         sliderFragment.setSliderValue(scenario.latest_closing); //closing time
-        businessPage.nextButton.click();
+        businessPage.nextButton().click();
         businessPage.getFryerQuestion();
         businessPage.yesNoButton(scenario.fryer).click(); // Fryer
         businessPage.getGreaseQuestion();
@@ -79,7 +79,7 @@ describe("Pricing Restaurants", function() {
         businessPage.yesNoButton(scenario.x_mod).click();
         businessPage.getClaimsLast4YearsQuestion()
         sliderFragment.setSliderValue(scenario.claims_last_4_years);
-        businessPage.nextButton.click(); // claims no.
+        businessPage.nextButton().click(); // claims no.
         businessPage.getClaims100kQuestion()
         businessPage.yesNoButton(scenario.claims_100k).click();
         businessPage.getQuoteIsReady();
@@ -91,7 +91,7 @@ describe("Pricing Restaurants", function() {
         businessPage.getWorkEmailInput().setValue(scenario.user_email);
         businessPage.getPhoneNumberInput().setValue(scenario.user_phone);
         businessPage.termsOfServicesCheckbox.click();
-        businessPage.submitButton.click();                
+        businessPage.submitButton().click();                
         businessPage.getMonthlyPayroll();
         allureReporter.endStep()
 
@@ -99,7 +99,7 @@ describe("Pricing Restaurants", function() {
         sliderFragment.setSliderValue(scenario.staff_payroll, 0)
         sliderFragment.setSliderValue(scenario.outside_sales_payroll, 1)
         sliderFragment.setSliderValue(scenario.clerical_payroll, 2)
-        businessPage.nextButton.click();
+        businessPage.nextButton().click();
         allureReporter.endStep()
 
         allureReporter.startStep("Get Estimate Values")
