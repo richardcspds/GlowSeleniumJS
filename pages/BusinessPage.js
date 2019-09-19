@@ -1,6 +1,6 @@
 import BasePage from "./BasePage";
 import {
-    element
+    element, button
 } from "../utils/Decorators";
 
 class BusinessPage extends BasePage {
@@ -19,8 +19,11 @@ class BusinessPage extends BasePage {
             //labels
         this.bpBusinessNameLabel = "//h1/span[contains(text(), 'the name')]";
         this.bpAddressConfirmationLabel = "//h1[text()= 'Is this your business?']";
+        this.bpPolicyStartLabel = "//h1[text()= 'When do you want your policy to begin?']";
         this.bpEmployeesQuestionLabel = "//div[contains(text(), 'How many of your employees work more than 20 hours a week?')]"
-        this.bpXmodQuestionLabel = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
+        this.bpQuoteIsReadyLabel = "//h1[contains(text(), 'Your quote')]"
+        this.bpMonthlyPayrollLabel = "//h1[contains(text(), 'What is your monthly')]"
+        
             //dropdowns
         this.bpNameDropDown = '//*[@id="Main"]/div/div[2]/div/div';
         this.bpAddressDropDown = "//div[contains(@class, 'dropdown-item')]";
@@ -37,7 +40,19 @@ class BusinessPage extends BasePage {
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         //TODO: Divide this class
+        this.bpAlcoholCookFoodQuestionDiv = "//div[text() = 'Do you serve alcohol or cook food?']"
         this.sliderYearFounded = "//div[text()='What year was your business formed in?']"
+        this.bpCateringQuestionDiv = "//div[text() = 'Do your employees deliver or perform off site catering?']"
+        this.bpEntertaimentQuestionDiv = "//div[text() = 'Do you have live music or entertainment?']"
+        this.bpClosingTimeQuestionDiv = "//div[text() = 'What is the latest closing time for your business during the week?']"
+        this.bpBouncersQuestionDiv = "//div[text() = 'Do you have any employees who are bouncers?']"
+        this.bpFryerQuestionDiv =  "//div[text() = 'Do you have a fryer?']"
+        this.bpGreaseQuestionDiv = "//div[text() = 'Are you using a grease trap cleaning service?']" 
+        this.bpXmodQuestionDiv = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
+        this.bpXmodScoreQuestionDiv = "//div[contains(text(), 'What is your experience modification factor (xMod)?')]"
+        this.bpClaimsLast4YearsQuestionDiv = "//div[contains(text(), 'Compensation claims in the past 4 years?')]"
+        this.bpClaims100kQuestion = "//div[contains(text(), 'claims where the total loss was greater than $100,000?')]"
+              
     }
 
     /**
@@ -80,35 +95,93 @@ class BusinessPage extends BasePage {
     }
 
     @element(browser)
+    getPolicyStartLabel(){
+        return this.bpPolicyStartLabel;
+    }
+
+    @element(browser)
     getEmployeesQuestionLabel() {
         return this.bpEmployeesQuestionLabel;
-    }
+    }    
     @element(browser)
-    getXmodQuestionLabel() {
-        return this.bpXmodQuestionLabel;
-    }
+    getAlcoholCookFoodQuestion() {
+        return this.bpAlcoholCookFoodQuestionDiv;
+    }    
     @element(browser)
     getsliderYearFounded() {
-            return this.sliderYearFounded;
-        }
-        //butons
+        return this.sliderYearFounded;
+    }
+    @element(browser)
+    getCateringQuestion(){
+        return this.bpCateringQuestionDiv;
+    }
+    @element(browser)
+    getEntertaimentQuestion(){
+        return this.bpEntertaimentQuestionDiv;
+    }
+    @element(browser)
+    getClosingTimeQuestion(){
+        return this.bpClosingTimeQuestionDiv;
+    }
+    @element(browser)
+    getbouncersQuestion(){
+        return this.bpBouncersQuestionDiv;
+    }
+    @element(browser)
+    getFryerQuestion(){
+        return this.bpFryerQuestionDiv;
+    }
+    @element(browser)
+    getGreaseQuestion(){
+        return this.bpGreaseQuestionDiv;
+    }
+    @element(browser)
+    getXmodQuestion() {
+        return this.bpXmodQuestionDiv;
+    }
+    @element(browser)
+    getXmodScoreQuestion() {
+        return this.bpXmodScoreQuestionDiv;
+    }
+    @element(browser)
+    getClaimsLast4YearsQuestion() {
+        return this.bpClaimsLast4YearsQuestionDiv;
+    }
+    @element(browser)
+    getClaims100kQuestion() {
+        return this.bpClaims100kQuestion;
+    }
+    @element(browser)
+    getQuoteIsReady() {
+        return this.bpQuoteIsReadyLabel;
+    }
+    @element(browser)
+    getMonthlyPayroll() {
+        return this.bpMonthlyPayrollLabel;
+    }
 
+
+    
+        //butons
+    //@button(browser)
     get primaryButton() {
-            return $(this.bpPrimaryButton);
-        }
-        // @element(browser)
-    get nextButton() {
-            return $(this.bpNextButton);
-        }
-        // @element(browser)
-    get noButton() {
-        return $(this.bpNoButton);
+        return $(this.bpPrimaryButton);
     }
-    get yesButton() {
-        return $(this.bpYesButton);
+    @button(browser)
+    nextButton() {
+        return this.bpNextButton;
     }
-    get submitButton() {
-        return $(this.bpSubmitButton);
+    @button(browser)
+    noButton() {
+        return this.bpNoButton;
+    }
+    @button(browser)
+    yesButton() {
+        return this.bpYesButton;
+    }
+    @button(browser)
+    submitButton() {
+        return this.bpSubmitButton;
     }
     get termsOfServicesCheckbox() {
         return $(this.bpTermsOfServicesCheckbox);
@@ -118,10 +191,6 @@ class BusinessPage extends BasePage {
     }
     get getAddressDropDown() {
         return $(this.bpAddressDropDown);
-    }
-
-    get getURL() {
-        return this.baseUrl;
     }
 
     /**
@@ -143,6 +212,14 @@ class BusinessPage extends BasePage {
         var subCategory = this.bpSubCategoryLabel.replace("{0}", type);
         this.isDisplayed($(subCategory));
         return $(subCategory);
+    }
+    yesNoButton(target) {
+        if (target == "No"){
+            return this.noButton();
+        }
+        else if (target == "Yes"){
+            return this.yesButton();
+        }
     }
 
     visit() {
