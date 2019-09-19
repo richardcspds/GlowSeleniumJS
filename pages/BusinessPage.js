@@ -40,10 +40,12 @@ class BusinessPage extends BasePage {
         this.bpCategoryLabel = "//section//div[text() = '{0}']";
         this.bpSubCategoryLabel = "//section//div[text() = '{0}']";
         //TODO: Divide this class
+        this.bpAlcoholCookFoodQuestionDiv = "//div[text() = 'Do you serve alcohol or cook food?']"
         this.sliderYearFounded = "//div[text()='What year was your business formed in?']"
         this.bpCateringQuestionDiv = "//div[text() = 'Do your employees deliver or perform off site catering?']"
         this.bpEntertaimentQuestionDiv = "//div[text() = 'Do you have live music or entertainment?']"
         this.bpClosingTimeQuestionDiv = "//div[text() = 'What is the latest closing time for your business during the week?']"
+        this.bpBouncersQuestionDiv = "//div[text() = 'Do you have any employees who are bouncers?']"
         this.bpFryerQuestionDiv =  "//div[text() = 'Do you have a fryer?']"
         this.bpGreaseQuestionDiv = "//div[text() = 'Are you using a grease trap cleaning service?']" 
         this.bpXmodQuestionDiv = "//div[contains(text(), 'Do you have an experience modification factor (xMod)?')]"
@@ -101,6 +103,10 @@ class BusinessPage extends BasePage {
         return this.bpEmployeesQuestionLabel;
     }    
     @element(browser)
+    getAlcoholCookFoodQuestion() {
+        return this.bpAlcoholCookFoodQuestionDiv;
+    }    
+    @element(browser)
     getsliderYearFounded() {
         return this.sliderYearFounded;
     }
@@ -115,6 +121,10 @@ class BusinessPage extends BasePage {
     @element(browser)
     getClosingTimeQuestion(){
         return this.bpClosingTimeQuestionDiv;
+    }
+    @element(browser)
+    getbouncersQuestion(){
+        return this.bpBouncersQuestionDiv;
     }
     @element(browser)
     getFryerQuestion(){

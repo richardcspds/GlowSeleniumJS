@@ -8,10 +8,11 @@
     },
     "scripts": {
         "test": "wdio wdio.conf.js",
-        "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",
-        "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
+        "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",        
         "regression": "wdio wdio.conf.js --mochaOpts.grep=@regression",
-        "repl": "wdio repl chrome"
+        "repl": "wdio repl chrome",
+        "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
+        "smoke_t": "wdio wdio.conf.js --mochaOpts.grep=@smoke_t"
     },
     "author": "Richard Cespedes",
     "license": "ISC",
