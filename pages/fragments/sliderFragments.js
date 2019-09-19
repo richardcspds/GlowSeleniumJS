@@ -16,7 +16,6 @@ class SliderFragment {
         var valueNow = sliderComponent[1].value
         var minValue = sliderComponent[2].value
         var maxValue = sliderComponent[3].value
-        var interval = sliderComponent[4].value
 
         if (valueNow < target) {
             for (let i = valueNow; i != target; i = i + 1) {

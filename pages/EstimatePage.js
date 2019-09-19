@@ -1,6 +1,7 @@
 import { element } from "../utils/Decorators"
+import BasePage from "./BasePage"
 
-class EstimatePage{
+class EstimatePage extends BasePage{
     constructor(){
         //labels
         this.epTotalMonthlyAmountLabel = "//h1[text() = 'Total Monthly Estimate']"
