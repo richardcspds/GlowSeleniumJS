@@ -8,7 +8,7 @@
     },
     "scripts": {
         "test": "wdio wdio.conf.js",
-        "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",        
+        "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",
         "regression": "wdio wdio.conf.js --mochaOpts.grep=@regression",
         "repl": "wdio repl chrome",
         "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
