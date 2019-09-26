@@ -1,92 +1,95 @@
 {
-  "name": "glowseleniumjs",
-  "version": "1.0.0",
-  "description": "Package for Glow automation framework ",
-  "main": "./src/start.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "start": "nf start -p 3001",
-    "build": "react-scripts build",
-    "test": "wdio wdio.conf.js",
-    "electron": "electron .",
-    "electron-start": "node src/start-react",
-    "react-start": "react-scripts start",
-    "pack": "build --dir",
-    "dist": "npm run build && build",
-    "postinstall": "install-app-deps",
-    "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",
-    "regression": "wdio wdio.conf.js --mochaOpts.grep=@regression",
-    "repl": "wdio repl chrome",
-    "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
-    "smoke_t": "wdio wdio.conf.js --mochaOpts.grep=@smoke_t"
-  },
-  "author": "Richard Cespedes",
-  "license": "ISC",
-  "homepage": "https://github.com/richardcspds/GlowSeleniumJS#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
-    "@wdio/allure-reporter": "^5.11.0",
-    "@wdio/cli": "^5.11.6",
-    "@wdio/local-runner": "^5.11.5",
-    "@wdio/mocha-framework": "^5.11.0",
-    "@wdio/spec-reporter": "^5.11.0",
-    "@wdio/sync": "^5.11.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.3",
-    "chai": "^4.0.2",
-    "chai-webdriverio": "^1.0.0",
-    "chromedriver": "^75.1.0",
-    "dateformat": "^3.0.3",
-    "electron-builder": "^21.2.0",
-    "eslint": "^6.4.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "mocha": "^6.1.4",
-    "react-scripts": "^3.1.2",
-    "selenium-webdriver": "^4.0.0-alpha.4",
-    "sleep": "^6.1.0",
-    "wdio": "^3.0.3",
-    "wdio-chromedriver-service": "^5.0.2",
-    "wdio-mocha-framework": "^0.6.4",
-    "webdriverio": "^5.11.6"
-  },
-  "dependencies": {
-    "allure-commandline": "^2.9.0",
-    "cross-spawn": "^7.0.0",
-    "electron": "^6.0.10",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "foreman": "^3.0.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "shelljs": "^0.8.3"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "build": {
-    "appId": "com.electron.electron-with-create-react-app",
-    "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
-    },
+    "name": "glowseleniumjs",
+    "version": "1.0.0",
+    "description": "Package for Glow automation framework ",
+    "main": "./src/start.js",
     "directories": {
-      "buildResources": "public"
+        "test": "test"
+    },
+    "scripts": {
+        "start": "nf start -p 3001",
+        "build": "react-scripts build",
+        "test": "wdio wdio.conf.js",
+        "electron": "electron .",
+        "electron-start": "node src/start-react",
+        "react-start": "react-scripts start",
+        "node-start": "node server.js",
+        "pack": "build --dir",
+        "dist": "npm run build && build",
+        "postinstall": "install-app-deps",
+        "reports": "allure generate ./allure-results -o ./allure-report --clean && allure open ./allure-report",
+        "regression": "wdio wdio.conf.js --mochaOpts.grep=@regression",
+        "repl": "wdio repl chrome",
+        "smoke": "wdio wdio.conf.js --mochaOpts.grep=@smoke",
+        "smoke_t": "wdio wdio.conf.js --mochaOpts.grep=@smoke_t"
+    },
+    "author": "Richard Cespedes",
+    "license": "ISC",
+    "homepage": "https://github.com/richardcspds/GlowSeleniumJS#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/plugin-proposal-decorators": "^7.4.4",
+        "@babel/preset-env": "^7.5.5",
+        "@babel/register": "^7.5.5",
+        "@wdio/allure-reporter": "^5.11.0",
+        "@wdio/cli": "^5.11.6",
+        "@wdio/local-runner": "^5.11.5",
+        "@wdio/mocha-framework": "^5.11.0",
+        "@wdio/spec-reporter": "^5.11.0",
+        "@wdio/sync": "^5.11.0",
+        "axios": "^0.19.0",
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^10.0.3",
+        "chai": "^4.0.2",
+        "chai-webdriverio": "^1.0.0",
+        "chromedriver": "^77.0.0",
+        "cors": "^2.8.5",
+        "dateformat": "^3.0.3",
+        "electron-builder": "^21.2.0",
+        "eslint": "^6.4.0",
+        "eslint-plugin-babel": "^5.3.0",
+        "mocha": "^6.1.4",
+        "react-scripts": "^3.1.2",
+        "selenium-webdriver": "^4.0.0-alpha.4",
+        "sleep": "^6.1.0",
+        "wdio": "^3.0.3",
+        "wdio-chromedriver-service": "^5.0.2",
+        "wdio-mocha-framework": "^0.6.4",
+        "webdriverio": "^5.11.6"
+    },
+    "dependencies": {
+        "allure-commandline": "^2.9.0",
+        "cross-spawn": "^7.0.0",
+        "electron": "^6.0.10",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.14.3",
+        "foreman": "^3.0.1",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "shelljs": "^0.8.3"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "build": {
+        "appId": "com.electron.electron-with-create-react-app",
+        "win": {
+            "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+        },
+        "directories": {
+            "buildResources": "public"
+        }
     }
-  }
 }
